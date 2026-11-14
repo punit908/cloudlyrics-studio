@@ -83,6 +83,169 @@ const ANIMATIONS = [
   { id: 'custom_keyframes', name: '★ Custom Keyframe Motion', desc: 'User-designed keyframe timeline with X/Y, Scale, Rotation, Opacity & Easing' }
 ];
 
+// ==========================================
+// ADVANCED PER-LINE ANIMATION LIBRARY & PRESETS
+// ==========================================
+const ENTRANCE_ANIMATIONS = [
+  { id: 'inherit', name: 'Global Default' },
+  { id: 'fade_in', name: 'Fade In' },
+  { id: 'slide_up', name: 'Slide Up' },
+  { id: 'slide_down', name: 'Slide Down' },
+  { id: 'zoom_in', name: 'Zoom In' },
+  { id: 'scale_pop', name: 'Scale Pop' },
+  { id: 'blur_reveal', name: 'Blur Reveal' },
+  { id: 'typewriter', name: 'Typewriter' },
+  { id: 'mask_reveal', name: 'Mask Reveal' },
+  { id: 'split_reveal', name: 'Split Reveal' },
+  { id: 'word_by_word', name: 'Word-by-Word Reveal' }
+];
+
+const EXIT_ANIMATIONS = [
+  { id: 'inherit', name: 'Global Default' },
+  { id: 'fade_out', name: 'Fade Out' },
+  { id: 'slide_away', name: 'Slide Away' },
+  { id: 'zoom_out', name: 'Zoom Out' },
+  { id: 'blur_out', name: 'Blur Out' },
+  { id: 'dissolve', name: 'Dissolve' },
+  { id: 'word_disappear', name: 'Word Disappear' },
+  { id: 'mask_exit', name: 'Mask Exit' }
+];
+
+const CONTINUOUS_MOTIONS = [
+  { id: 'none', name: 'None' },
+  { id: 'floating', name: 'Floating' },
+  { id: 'gentle_pulse', name: 'Gentle Pulse' },
+  { id: 'tracking_expansion', name: 'Tracking Expansion' },
+  { id: 'subtle_shake', name: 'Subtle Shake' },
+  { id: 'wave_motion', name: 'Wave Motion' },
+  { id: 'continuous_glow', name: 'Continuous Glow' }
+];
+
+const TRANSFORM_MODES = [
+  { id: 'none', name: 'Standard Line' },
+  { id: 'split_text', name: 'Split Text' },
+  { id: 'char_stagger', name: 'Character Stagger' },
+  { id: 'line_reveal', name: 'Line Reveal' },
+  { id: 'flip_3d', name: '3D Flip' },
+  { id: 'kinetic_type', name: 'Kinetic Typography' }
+];
+
+const LINE_STYLE_PRESETS = [
+  {
+    id: 'cinematic',
+    name: 'Cinematic',
+    desc: 'Slow zoom, tracking expansion & deep halo',
+    style: { fontWeight: '700', letterSpacing: 4, shadowBlur: 26, glowBlur: 12, useGradient: false },
+    anim: { in: 'blur_reveal', inDur: 0.65, out: 'fade_out', outDur: 0.55, motion: 'tracking_expansion', transform: 'none' }
+  },
+  {
+    id: 'romantic',
+    name: 'Romantic',
+    desc: 'Warm gradient, weightless float & soft glow',
+    style: { fontFamily: '"Cormorant Garamond", serif', fontWeight: '600', textColor: '#FFF1F2', gradientColor: '#FDA4AF', useGradient: true, glowColor: '#FB7185', glowBlur: 22 },
+    anim: { in: 'fade_in', inDur: 0.6, out: 'blur_out', outDur: 0.55, motion: 'floating', transform: 'none' }
+  },
+  {
+    id: 'dreamy',
+    name: 'Dreamy',
+    desc: 'Rack-focus blur reveal with wave drift',
+    style: { textColor: '#E0F2FE', gradientColor: '#C084FC', useGradient: true, glowColor: '#38BDF8', glowBlur: 24, blur: 0 },
+    anim: { in: 'blur_reveal', inDur: 0.7, out: 'blur_out', outDur: 0.6, motion: 'wave_motion', transform: 'char_stagger' }
+  },
+  {
+    id: 'energetic',
+    name: 'Energetic',
+    desc: 'Fast scale pop & kinetic word impact',
+    style: { fontFamily: '"Montserrat", sans-serif', fontWeight: '800', textColor: '#FFFFFF', gradientColor: '#38BDF8', useGradient: true, scale: 1.08, strokeWidth: 2, strokeColor: '#020617' },
+    anim: { in: 'scale_pop', inDur: 0.32, out: 'zoom_out', outDur: 0.28, motion: 'gentle_pulse', transform: 'kinetic_type' }
+  },
+  {
+    id: 'minimal',
+    name: 'Minimal',
+    desc: 'Crisp mask reveal with clean typography',
+    style: { fontFamily: '"Plus Jakarta Sans", sans-serif', fontWeight: '600', letterSpacing: 1.5, shadowBlur: 8, glowBlur: 0, useGradient: false },
+    anim: { in: 'mask_reveal', inDur: 0.4, out: 'mask_exit', outDur: 0.35, motion: 'none', transform: 'line_reveal' }
+  },
+  {
+    id: 'emotional',
+    name: 'Emotional',
+    desc: 'Gentle slide up, dissolve exit & soft breathing',
+    style: { fontFamily: '"Playfair Display", serif', fontWeight: '600', textColor: '#F8FAFC', opacity: 95, shadowBlur: 20 },
+    anim: { in: 'slide_up', inDur: 0.65, out: 'dissolve', outDur: 0.6, motion: 'floating', transform: 'none' }
+  },
+  {
+    id: 'retro',
+    name: 'Retro',
+    desc: 'Typewriter cadence with warm neon glow',
+    style: { fontFamily: '"Syne", sans-serif', textColor: '#FEF08A', gradientColor: '#F97316', useGradient: true, strokeWidth: 2, strokeColor: '#431407', glowColor: '#F59E0B', glowBlur: 18 },
+    anim: { in: 'typewriter', inDur: 0.55, out: 'slide_away', outDur: 0.35, motion: 'continuous_glow', transform: 'none' }
+  },
+  {
+    id: 'bold_kinetic',
+    name: 'Bold Kinetic',
+    desc: '3D flip & split word entrance',
+    style: { fontFamily: '"Bebas Neue", sans-serif', scale: 1.15, letterSpacing: 3, textColor: '#FFFFFF', gradientColor: '#60A5FA', useGradient: true, shadowBlur: 28 },
+    anim: { in: 'split_reveal', inDur: 0.4, out: 'word_disappear', outDur: 0.35, motion: 'gentle_pulse', transform: 'flip_3d' }
+  },
+  {
+    id: 'soft_aesthetic',
+    name: 'Soft Aesthetic',
+    desc: 'Word-by-word reveal with pastel aura',
+    style: { fontFamily: '"Poppins", sans-serif', fontWeight: '600', textColor: '#F5F3FF', gradientColor: '#DDD6FE', useGradient: true, glowColor: '#A78BFA', glowBlur: 20 },
+    anim: { in: 'word_by_word', inDur: 0.5, out: 'fade_out', outDur: 0.45, motion: 'floating', transform: 'split_text' }
+  }
+];
+
+// Intelligent Semantic Lyric Mood Analyzer
+const analyzeLyricEmotionAndSuggest = (lineText = '') => {
+  const clean = (lineText || '').toLowerCase();
+  const energeticRx = /\b(fire|run|jump|fly|night|party|burn|loud|beat|dance|power|fast|wild|alive|scream|boom|go|rise|high|electric|stoppable)\b|!/;
+  const romanticRx = /\b(love|heart|kiss|touch|hold|forever|darling|sweet|baby|eyes|dream|yours|mine|arms|angel|beautiful|heaven|together|soul)\b/;
+  const dramaticRx = /\b(break|fall|storm|dark|blood|war|thunder|shatter|end|world|king|crown|destiny|shadow|scream|never|everything)\b/;
+  const emotionalRx = /\b(cry|tears|alone|gone|miss|hurt|pain|lost|cold|memory|goodbye|fade|empty|silence|rain|broken|sorry|stay)\b/;
+
+  if (energeticRx.test(clean)) {
+    return {
+      presetId: 'energetic',
+      mood: 'Energetic / High-Impact',
+      reason: 'Detected high-energy phrasing — applied Scale Pop entrance, Kinetic Typography & Gentle Pulse.'
+    };
+  }
+  if (romanticRx.test(clean)) {
+    return {
+      presetId: 'romantic',
+      mood: 'Romantic / Intimate',
+      reason: 'Detected romantic imagery — applied Soft Rose Gradient, Floating motion & Breathing Glow.'
+    };
+  }
+  if (dramaticRx.test(clean)) {
+    return {
+      presetId: 'bold_kinetic',
+      mood: 'Dramatic / Intense',
+      reason: 'Detected dramatic tone — applied Split Reveal entrance, 3D Flip transform & Deep Shadow.'
+    };
+  }
+  if (emotionalRx.test(clean)) {
+    return {
+      presetId: 'emotional',
+      mood: 'Emotional / Melancholic',
+      reason: 'Detected emotional vulnerability — applied Slow Slide Up, Dissolve exit & Gentle Float.'
+    };
+  }
+  if (clean.split(/\s+/).length <= 3) {
+    return {
+      presetId: 'cinematic',
+      mood: 'Cinematic Short Phrase',
+      reason: 'Short impactful phrase — applied Blur Reveal, Tracking Expansion & Cinema Halo.'
+    };
+  }
+  return {
+    presetId: 'soft_aesthetic',
+    mood: 'Melodic / Flowing',
+    reason: 'Balanced melodic line — applied Word-by-Word Reveal with Soft Aesthetic glow.'
+  };
+};
+
 const EASING_FUNCTIONS = {
   linear: { name: 'Linear (Constant)', fn: (t) => t },
   easeOutCubic: { name: 'Ease Out Cubic (Smooth Deceleration)', fn: (t) => 1 - Math.pow(1 - t, 3) },
@@ -374,6 +537,71 @@ const clearAllSessionAssetsFromIDB = async () => {
 };
 
 // ==========================================
+// AUTOMATIC AUDIO-VIDEO MASTER CLOCK HELPERS
+// ==========================================
+const getVideoOriginOffset = (vid) => {
+  if (!vid) return 0;
+  try {
+    if (typeof vid.mozStartTime === 'number' && !isNaN(vid.mozStartTime)) return vid.mozStartTime;
+    if (vid.buffered && vid.buffered.length > 0) {
+      const firstStart = vid.buffered.start(0);
+      if (firstStart > 0 && firstStart < 2.0) return firstStart;
+    }
+  } catch (_) {}
+  return 0;
+};
+
+const computeTargetVideoTime = (masterTime, vid) => {
+  if (!vid) return 0;
+  const rawDur = vid.duration;
+  const originOffset = vid.__originOffset || 0;
+  if (!rawDur || !isFinite(rawDur) || rawDur <= 0) {
+    return Math.max(0, masterTime + originOffset);
+  }
+  const usableDur = Math.max(0.05, rawDur - originOffset);
+  const wrapped = ((masterTime % usableDur) + usableDur) % usableDur;
+  return Math.min(rawDur - 0.001, Math.max(originOffset, originOffset + wrapped));
+};
+
+const silenceVideoElement = (vid) => {
+  if (!vid) return;
+  vid.muted = true;
+  vid.defaultMuted = true;
+  vid.volume = 0;
+  vid.playsInline = true;
+  vid.loop = true;
+};
+
+const seekVideoDeterministic = (vid, targetTime, timeoutMs = 450) => {
+  return new Promise((resolve) => {
+    if (!vid || vid.readyState < 1) {
+      resolve();
+      return;
+    }
+    const clampedTarget = computeTargetVideoTime(targetTime, vid);
+    if (Math.abs((vid.currentTime || 0) - clampedTarget) < 0.008 && !vid.seeking) {
+      resolve();
+      return;
+    }
+    let finished = false;
+    const done = () => {
+      if (finished) return;
+      finished = true;
+      vid.removeEventListener('seeked', done);
+      clearTimeout(timer);
+      resolve();
+    };
+    const timer = setTimeout(done, timeoutMs);
+    vid.addEventListener('seeked', done, { once: true });
+    try {
+      vid.currentTime = clampedTarget;
+    } catch (_) {
+      done();
+    }
+  });
+};
+
+// ==========================================
 // SHARED CANVAS 2D FRAME RENDER ENGINE
 // ==========================================
 const renderFrameToCanvas = (ctx, width, height, currentTime, project, mediaAssets = {}) => {
@@ -601,85 +829,213 @@ const renderFrameToCanvas = (ctx, width, height, currentTime, project, mediaAsse
     ctx.restore();
   }
 
-  // 3. DRAW LYRICS IF ACTIVE
+  // 3. DRAW LYRICS IF ACTIVE (WITH PER-LINE TYPOGRAPHY, MODULAR IN/OUT/MOTION/TRANSFORM & WORD-LEVEL ANIMATION)
   if (activeLine && (activeLine.text?.trim().length > 0 || activeLine.isInstrumental)) {
+    const ls = activeLine.style || {};
+    const la = activeLine.anim || {};
+
+    // Merge line-specific overrides with global project typography defaults
+    const effFontFamily = ls.fontFamily || typography.fontFamily || 'sans-serif';
+    const effFontSize = ls.fontSize ?? typography.fontSize ?? 48;
+    const effFontWeight = ls.fontWeight || typography.fontWeight || '700';
+    const effTextColor = ls.textColor || typography.textColor || '#FFFFFF';
+    const effGradientColor = ls.gradientColor || typography.highlightColor || '#38BDF8';
+    const effUseGradient = ls.useGradient ?? false;
+    const effHighlightColor = ls.highlightColor || typography.highlightColor || '#C084FC';
+    const effOpacity = (ls.opacity ?? 100) / 100;
+    const effLetterSpacing = ls.letterSpacing ?? typography.letterSpacing ?? 1;
+    const effLineHeight = ls.lineHeight ?? typography.lineHeight ?? 1.35;
+    const effAlign = ls.align || typography.align || 'center';
+    const effPosX = ls.positionX ?? typography.positionX ?? 50;
+    const effPosY = ls.positionY ?? typography.positionY ?? 50;
+    const effRotation = ls.rotation ?? 0;
+    const effBaseScale = ls.scale ?? 1;
+    const effShadowBlur = ls.shadowBlur ?? typography.shadowBlur ?? 18;
+    const effShadowColor = ls.shadowColor || typography.shadowColor || 'rgba(0,0,0,0.85)';
+    const effStrokeWidth = ls.strokeWidth ?? typography.strokeWidth ?? 0;
+    const effStrokeColor = ls.strokeColor || typography.strokeColor || '#000000';
+    const effGlowBlur = ls.glowBlur ?? 0;
+    const effGlowColor = ls.glowColor || effHighlightColor;
+    const effBaseBlur = ls.blur ?? 0;
+    const effShowBox = ls.showBox ?? typography.showBox ?? false;
+    const effBoxColor = ls.boxColor || typography.boxColor || 'rgba(11, 13, 18, 0.72)';
+    const effMaxWidth = ls.maxWidth ?? typography.maxWidth ?? 84;
+
     const lineDuration = Math.max(0.1, activeLine.endTime - activeLine.startTime);
-    const elapsed = currentTime - activeLine.startTime;
-    const remaining = activeLine.endTime - currentTime;
+    const elapsed = Math.max(0, currentTime - activeLine.startTime);
+    const remaining = Math.max(0, activeLine.endTime - currentTime);
     const progress = Math.max(0, Math.min(1, elapsed / lineDuration));
 
-    const animDur = Math.min(animation.duration || 0.4, lineDuration / 2);
-    const enterProgress = animDur > 0 ? Math.min(1, elapsed / animDur) : 1;
-    const exitProgress = animDur > 0 ? Math.min(1, remaining / animDur) : 1;
+    const inPreset = la.in && la.in !== 'inherit' ? la.in : null;
+    const outPreset = la.out && la.out !== 'inherit' ? la.out : null;
+    const motionPreset = la.motion || 'none';
+    const transformPreset = la.transform || 'none';
+
+    const inDur = Math.min(la.inDur ?? animation.duration ?? 0.45, lineDuration * 0.55);
+    const outDur = Math.min(la.outDur ?? animation.duration ?? 0.45, lineDuration * 0.55);
+    const enterProgress = inDur > 0 ? Math.max(0, Math.min(1, elapsed / inDur)) : 1;
+    const exitProgress = outDur > 0 ? Math.max(0, Math.min(1, remaining / outDur)) : 1;
+
     const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3);
+    const easeBackOut = (x) => { const c1 = 1.70158; const c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
     const smoothEnter = easeOutCubic(enterProgress);
     const smoothExit = easeOutCubic(exitProgress);
 
     let alpha = 1;
     let translateX = 0;
     let translateY = 0;
-    let scale = 1;
-    let rotationDeg = 0;
-    let blurVal = 0;
-    let extraGlow = 0;
+    let scaleX = effBaseScale;
+    let scaleY = effBaseScale;
+    let rotationDeg = effRotation;
+    let blurVal = effBaseBlur * (height / 1000);
+    let extraGlow = effGlowBlur;
+    let dynamicLetterSpacing = effLetterSpacing;
+    let clipTopPct = 0;
+    let clipBottomPct = 1;
+    let splitSpreadPx = 0;
 
-    if (animation.preset === 'custom_keyframes') {
+    // A. Global fallback or Custom Keyframes
+    if (!inPreset && !outPreset && animation.preset === 'custom_keyframes') {
       const kfState = interpolateCustomKeyframes(
         animation.customKeyframes || DEFAULT_CUSTOM_KEYFRAMES,
         progress * 100,
         animation.easing || 'easeOutCubic'
       );
       alpha = kfState.opacity;
-      scale = kfState.scale;
+      scaleX = effBaseScale * kfState.scale;
+      scaleY = effBaseScale * kfState.scale;
       translateX = (kfState.offsetX / 100) * width;
       translateY = (kfState.offsetY / 100) * height;
-      rotationDeg = kfState.rotation || 0;
-      blurVal = (kfState.blur || 0) * (height / 1000);
-    } else if (animation.preset === 'fade') {
-      alpha = Math.min(smoothEnter, smoothExit);
-    } else if (animation.preset === 'slide_up') {
-      alpha = Math.min(smoothEnter, smoothExit);
-      translateY = (1 - smoothEnter) * (height * 0.045);
-    } else if (animation.preset === 'zoom') {
-      alpha = Math.min(smoothEnter, smoothExit);
-      scale = 0.84 + 0.16 * smoothEnter;
-    } else if (animation.preset === 'float') {
-      alpha = Math.min(smoothEnter, smoothExit);
-      translateY = Math.sin(currentTime * 2.5) * (height * 0.012);
-    } else if (animation.preset === 'blur') {
-      alpha = Math.min(smoothEnter, smoothExit);
-      blurVal = (1 - smoothEnter) * 14 * (height / 1000);
-    } else if (animation.preset === 'glow') {
-      alpha = Math.min(smoothEnter, smoothExit);
-      extraGlow = (0.5 + 0.5 * Math.sin(currentTime * 4)) * 28;
+      rotationDeg += kfState.rotation || 0;
+      blurVal += (kfState.blur || 0) * (height / 1000);
+    } else {
+      // B. Entrance Calculation
+      const activeIn = inPreset || (
+        animation.preset === 'slide_up' ? 'slide_up' :
+        animation.preset === 'zoom' ? 'zoom_in' :
+        animation.preset === 'blur' ? 'blur_reveal' :
+        animation.preset === 'typewriter' ? 'typewriter' :
+        animation.preset === 'word_reveal' ? 'word_by_word' :
+        animation.preset === 'static' ? 'static' : 'fade_in'
+      );
+
+      if (activeIn === 'fade_in') {
+        alpha *= smoothEnter;
+      } else if (activeIn === 'slide_up') {
+        alpha *= smoothEnter;
+        translateY += (1 - smoothEnter) * (height * 0.048);
+      } else if (activeIn === 'slide_down') {
+        alpha *= smoothEnter;
+        translateY -= (1 - smoothEnter) * (height * 0.048);
+      } else if (activeIn === 'zoom_in') {
+        alpha *= smoothEnter;
+        const z = 0.78 + 0.22 * smoothEnter;
+        scaleX *= z;
+        scaleY *= z;
+      } else if (activeIn === 'scale_pop') {
+        alpha *= Math.min(1, enterProgress * 2.2);
+        const pop = easeBackOut(enterProgress);
+        scaleX *= Math.max(0.2, pop);
+        scaleY *= Math.max(0.2, pop);
+      } else if (activeIn === 'blur_reveal') {
+        alpha *= smoothEnter;
+        blurVal += (1 - smoothEnter) * 16 * (height / 1000);
+      } else if (activeIn === 'mask_reveal') {
+        clipBottomPct = smoothEnter;
+        translateY += (1 - smoothEnter) * (height * 0.025);
+      } else if (activeIn === 'split_reveal') {
+        alpha *= smoothEnter;
+        splitSpreadPx = (1 - smoothEnter) * (width * 0.08);
+      }
+
+      // C. Exit Calculation
+      const activeOut = outPreset || (animation.preset === 'static' ? 'static' : 'fade_out');
+      if (exitProgress < 1) {
+        if (activeOut === 'fade_out') {
+          alpha *= smoothExit;
+        } else if (activeOut === 'slide_away') {
+          alpha *= smoothExit;
+          translateY -= (1 - smoothExit) * (height * 0.045);
+        } else if (activeOut === 'zoom_out') {
+          alpha *= smoothExit;
+          const zOut = 0.8 + 0.2 * smoothExit;
+          scaleX *= zOut;
+          scaleY *= zOut;
+        } else if (activeOut === 'blur_out') {
+          alpha *= smoothExit;
+          blurVal += (1 - smoothExit) * 16 * (height / 1000);
+        } else if (activeOut === 'dissolve') {
+          alpha *= Math.pow(smoothExit, 1.6);
+          scaleX *= 1 + (1 - smoothExit) * 0.08;
+          scaleY *= 1 + (1 - smoothExit) * 0.08;
+          blurVal += (1 - smoothExit) * 8 * (height / 1000);
+        } else if (activeOut === 'mask_exit') {
+          clipTopPct = 1 - smoothExit;
+        }
+      }
+    }
+
+    // D. Continuous Motion Layer
+    const effMotion = motionPreset !== 'none' ? motionPreset : (
+      animation.preset === 'float' ? 'floating' :
+      animation.preset === 'glow' ? 'continuous_glow' : 'none'
+    );
+    if (effMotion === 'floating') {
+      translateY += Math.sin(currentTime * 2.6) * (height * 0.012);
+    } else if (effMotion === 'gentle_pulse') {
+      const p = 1 + Math.sin(currentTime * 4.2) * 0.035;
+      scaleX *= p;
+      scaleY *= p;
+    } else if (effMotion === 'tracking_expansion') {
+      dynamicLetterSpacing += progress * 6.5;
+    } else if (effMotion === 'subtle_shake') {
+      translateX += Math.sin(currentTime * 28) * (width * 0.003);
+      translateY += Math.cos(currentTime * 34) * (height * 0.003);
+    } else if (effMotion === 'wave_motion') {
+      rotationDeg += Math.sin(currentTime * 2.2) * 2.2;
+      translateY += Math.cos(currentTime * 2.2) * (height * 0.009);
+    } else if (effMotion === 'continuous_glow') {
+      extraGlow += (0.5 + 0.5 * Math.sin(currentTime * 4.5)) * 28;
+    }
+
+    // E. Transform Mode Layer
+    if (transformPreset === 'flip_3d') {
+      const flipFactor = enterProgress < 1 ? Math.max(0.08, Math.sin(smoothEnter * (Math.PI / 2))) : 1;
+      scaleY *= flipFactor;
+    } else if (transformPreset === 'kinetic_type') {
+      const kick = Math.exp(-elapsed * 5.5) * 0.18;
+      scaleX *= 1 + kick;
+      scaleY *= 1 + kick;
+    } else if (transformPreset === 'line_reveal') {
+      clipBottomPct = Math.min(clipBottomPct, smoothEnter);
     }
 
     ctx.save();
-    const posX = ((typography.positionX ?? 50) / 100) * width + translateX;
-    const posY = ((typography.positionY ?? 50) / 100) * height + translateY;
+    const posX = (effPosX / 100) * width + translateX;
+    const posY = (effPosY / 100) * height + translateY;
     ctx.translate(posX, posY);
     if (rotationDeg !== 0) {
       ctx.rotate((rotationDeg * Math.PI) / 180);
     }
-    ctx.scale(scale, scale);
+    ctx.scale(scaleX, scaleY);
     if (blurVal > 0.2) {
       ctx.filter = `blur(${blurVal.toFixed(1)}px)`;
     }
-    ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+    ctx.globalAlpha = Math.max(0, Math.min(1, alpha * effOpacity));
 
-    const baseFontSize = ((typography.fontSize || 48) / 1000) * height;
-    ctx.font = `${typography.fontWeight || '700'} ${baseFontSize}px ${typography.fontFamily || 'sans-serif'}`;
-    ctx.textAlign = typography.align || 'center';
+    const baseFontSize = (effFontSize / 1000) * height;
+    ctx.font = `${effFontWeight} ${baseFontSize}px ${effFontFamily}`;
+    ctx.textAlign = effAlign;
     ctx.textBaseline = 'middle';
 
     if (activeLine.isInstrumental) {
       const pulse = 0.5 + 0.5 * Math.sin(currentTime * 4.5);
-      ctx.shadowColor = typography.highlightColor || '#C084FC';
+      ctx.shadowColor = effHighlightColor;
       ctx.shadowBlur = (20 + pulse * 20) * (height / 1000);
       const barCount = 9;
       const barSpacing = baseFontSize * 0.42;
       const totalBarW = (barCount - 1) * barSpacing;
-      ctx.fillStyle = typography.highlightColor || '#C084FC';
+      ctx.fillStyle = effHighlightColor;
       for (let b = 0; b < barCount; b++) {
         const bx = -totalBarW / 2 + b * barSpacing;
         const bh = baseFontSize * (0.28 + 0.65 * Math.abs(Math.sin(currentTime * 5.2 + b * 0.7)));
@@ -688,15 +1044,16 @@ const renderFrameToCanvas = (ctx, width, height, currentTime, project, mediaAsse
         else ctx.rect(bx - baseFontSize * 0.09, -bh / 2 - baseFontSize * 0.65, baseFontSize * 0.18, bh);
         ctx.fill();
       }
-      ctx.font = `700 ${baseFontSize * 0.52}px ${typography.fontFamily || 'sans-serif'}`;
-      ctx.fillStyle = typography.textColor || '#FFFFFF';
+      ctx.font = `700 ${baseFontSize * 0.52}px ${effFontFamily}`;
+      ctx.fillStyle = effTextColor;
       ctx.fillText('🎵  I N S T R U M E N T A L  🎵', 0, baseFontSize * 0.45);
       ctx.restore();
     } else {
-      const maxTextWidth = ((typography.maxWidth || 84) / 100) * width;
+      const maxTextWidth = (effMaxWidth / 100) * width;
       let displayStr = activeLine.text;
-      if (animation.preset === 'typewriter' || animation.preset === 'letter_reveal') {
-        const charCount = Math.floor(displayStr.length * Math.min(1, elapsed / (lineDuration * 0.75)));
+      const isTypewriter = inPreset === 'typewriter' || (!inPreset && (animation.preset === 'typewriter' || animation.preset === 'letter_reveal'));
+      if (isTypewriter) {
+        const charCount = Math.floor(displayStr.length * Math.min(1, elapsed / Math.max(0.15, inDur * 1.35)));
         displayStr = displayStr.slice(0, Math.max(1, charCount));
       }
 
@@ -720,11 +1077,21 @@ const renderFrameToCanvas = (ctx, width, height, currentTime, project, mediaAsse
       }
       if (currentLineWords.length > 0) wrappedLines.push(currentLineWords);
 
-      const lineHeightPx = baseFontSize * (typography.lineHeight || 1.35);
+      const lineHeightPx = baseFontSize * effLineHeight;
       const totalBlockHeight = wrappedLines.length * lineHeightPx;
       const startY = -totalBlockHeight / 2 + lineHeightPx / 2;
 
-      if (typography.showBox) {
+      // Apply Mask Clipping if Mask Reveal / Mask Exit / Line Reveal active
+      if (clipTopPct > 0 || clipBottomPct < 1) {
+        const maskPad = baseFontSize * 0.8;
+        const topY = -totalBlockHeight / 2 - maskPad;
+        const fullH = totalBlockHeight + maskPad * 2;
+        ctx.beginPath();
+        ctx.rect(-width, topY + fullH * clipTopPct, width * 2, fullH * Math.max(0, clipBottomPct - clipTopPct));
+        ctx.clip();
+      }
+
+      if (effShowBox) {
         let maxW = 0;
         wrappedLines.forEach(wl => {
           const str = wl.map(w => w.word).join(' ');
@@ -734,12 +1101,12 @@ const renderFrameToCanvas = (ctx, width, height, currentTime, project, mediaAsse
         const padX = baseFontSize * 0.6;
         const padY = baseFontSize * 0.42;
         ctx.save();
-        ctx.fillStyle = typography.boxColor || 'rgba(11, 13, 18, 0.68)';
+        ctx.fillStyle = effBoxColor;
         const boxW = maxW + padX * 2;
         const boxH = totalBlockHeight + padY * 2;
         let boxX = -boxW / 2;
-        if (typography.align === 'left') boxX = -padX;
-        if (typography.align === 'right') boxX = -maxW - padX;
+        if (effAlign === 'left') boxX = -padX;
+        if (effAlign === 'right') boxX = -maxW - padX;
         ctx.beginPath();
         if (ctx.roundRect) ctx.roundRect(boxX, -totalBlockHeight / 2 - padY, boxW, boxH, 16 * (height / 1000));
         else ctx.rect(boxX, -totalBlockHeight / 2 - padY, boxW, boxH);
@@ -747,50 +1114,166 @@ const renderFrameToCanvas = (ctx, width, height, currentTime, project, mediaAsse
         ctx.restore();
       }
 
-      if ((typography.shadowBlur || 0) > 0 || extraGlow > 0) {
-        ctx.shadowColor = extraGlow > 0 ? (typography.highlightColor || '#C084FC') : (typography.shadowColor || 'rgba(0,0,0,0.85)');
-        ctx.shadowBlur = ((typography.shadowBlur || 0) + extraGlow) * (height / 1000);
+      if (effShadowBlur > 0 || extraGlow > 0) {
+        ctx.shadowColor = extraGlow > 0 ? effGlowColor : effShadowColor;
+        ctx.shadowBlur = (effShadowBlur + extraGlow) * (height / 1000);
         ctx.shadowOffsetY = 4 * (height / 1000);
       }
+
+      if (typeof ctx.letterSpacing !== 'undefined') {
+        ctx.letterSpacing = `${(dynamicLetterSpacing * (height / 1000)).toFixed(1)}px`;
+      }
+
+      // Build Base Fill Style (Solid or Vertical/Diagonal Gradient)
+      let baseFillStyle = effTextColor;
+      if (effUseGradient) {
+        const textGrad = ctx.createLinearGradient(0, -totalBlockHeight / 2, 0, totalBlockHeight / 2);
+        textGrad.addColorStop(0, effTextColor);
+        textGrad.addColorStop(1, effGradientColor);
+        baseFillStyle = textGrad;
+      }
+
+      const hasCustomWordSettings = (activeLine.words || []).some(
+        w => w.color || w.scale || w.emphasis || w.delay || (w.inEffect && w.inEffect !== 'none') || (w.outEffect && w.outEffect !== 'none')
+      );
+      const useWordLevelRender =
+        syncMode === 'word' ||
+        inPreset === 'word_by_word' ||
+        inPreset === 'split_reveal' ||
+        outPreset === 'word_disappear' ||
+        transformPreset === 'split_text' ||
+        transformPreset === 'char_stagger' ||
+        transformPreset === 'kinetic_type' ||
+        animation.preset === 'word_reveal' ||
+        hasCustomWordSettings;
 
       wrappedLines.forEach((wl, lineIdx) => {
         const y = startY + lineIdx * lineHeightPx;
         const lineText = wl.map(w => w.word).join(' ');
 
-        if (syncMode === 'word' || animation.preset === 'word_reveal') {
+        if (useWordLevelRender) {
           const totalLineWidth = ctx.measureText(lineText).width;
           let cursorX = -totalLineWidth / 2;
-          if (typography.align === 'left') cursorX = 0;
-          if (typography.align === 'right') cursorX = -totalLineWidth;
+          if (effAlign === 'left') cursorX = 0;
+          if (effAlign === 'right') cursorX = -totalLineWidth;
           const origAlign = ctx.textAlign;
           ctx.textAlign = 'left';
 
           wl.forEach((wObj) => {
             const wordData = activeLine.words && activeLine.words[wObj.index];
+            const wordWidth = ctx.measureText(wObj.word).width;
+            const totalWordsCount = Math.max(1, rawWords.length);
+            const wordNormIndex = wObj.index / totalWordsCount;
+
+            // Word Entrance & Exit Progress
+            const wordDelaySec = Number(wordData?.delay || 0);
+            const staggerOffsetSec =
+              (inPreset === 'word_by_word' || transformPreset === 'split_text' || transformPreset === 'char_stagger')
+                ? wordNormIndex * Math.min(0.65, lineDuration * 0.38)
+                : 0;
+            const localWordElapsed = Math.max(0, elapsed - wordDelaySec - staggerOffsetSec);
+            const wordInDur = Math.max(0.16, inDur * 0.75);
+            const wInProg = Math.max(0, Math.min(1, localWordElapsed / wordInDur));
+            const wSmoothIn = easeOutCubic(wInProg);
+
+            let wAlpha = 1;
+            let wOffsetX = 0;
+            let wOffsetY = 0;
+            let wScale = Number(wordData?.scale || 1);
+
+            if (inPreset === 'word_by_word' || transformPreset === 'split_text') {
+              wAlpha *= wSmoothIn;
+              wOffsetY += (1 - wSmoothIn) * (baseFontSize * 0.42);
+            } else if (transformPreset === 'char_stagger') {
+              wAlpha *= wSmoothIn;
+              wOffsetY += Math.sin(currentTime * 5 + wObj.index * 0.9) * (baseFontSize * 0.08);
+            }
+
+            if (inPreset === 'split_reveal') {
+              const dir = wObj.index % 2 === 0 ? -1 : 1;
+              wOffsetY += dir * splitSpreadPx * 0.45;
+              wOffsetX += (wObj.index - (totalWordsCount - 1) / 2) * splitSpreadPx * 0.35;
+            }
+
+            if (outPreset === 'word_disappear' && exitProgress < 1) {
+              const revOrder = (totalWordsCount - 1 - wObj.index) / totalWordsCount;
+              const wOutProg = Math.max(0, Math.min(1, (exitProgress - revOrder * 0.45) / 0.55));
+              wAlpha *= wOutProg;
+              wOffsetY -= (1 - wOutProg) * (baseFontSize * 0.35);
+            }
+
+            // Individual Word Entrance / Exit Override
+            const wInEffect = wordData?.inEffect || 'none';
+            if (wInEffect === 'pop') {
+              wScale *= Math.max(0.2, easeBackOut(wInProg));
+              wAlpha *= Math.min(1, wInProg * 2);
+            } else if (wInEffect === 'slide_up') {
+              wOffsetY += (1 - wSmoothIn) * (baseFontSize * 0.55);
+              wAlpha *= wSmoothIn;
+            } else if (wInEffect === 'fade') {
+              wAlpha *= wSmoothIn;
+            }
+
+            const wOutEffect = wordData?.outEffect || 'none';
+            if (exitProgress < 1 && wOutEffect !== 'none') {
+              if (wOutEffect === 'fade') wAlpha *= smoothExit;
+              else if (wOutEffect === 'drop') {
+                wAlpha *= smoothExit;
+                wOffsetY += (1 - smoothExit) * (baseFontSize * 0.5);
+              }
+            }
+
+            // Word Highlight Timing
             let isHighlighted = false;
             if (syncMode === 'word' && wordData && wordData.startTime !== undefined) {
-              isHighlighted = currentTime >= wordData.startTime;
+              isHighlighted = currentTime >= wordData.startTime + wordDelaySec;
             } else {
-              const wordThreshold = wObj.index / Math.max(1, rawWords.length);
+              const wordThreshold = wObj.index / totalWordsCount;
               isHighlighted = progress >= wordThreshold * 0.85;
             }
-            ctx.fillStyle = isHighlighted ? (typography.highlightColor || '#C084FC') : (typography.textColor || '#FFFFFF');
-            if ((typography.strokeWidth || 0) > 0) {
-              ctx.lineWidth = typography.strokeWidth * (height / 1000);
-              ctx.strokeStyle = typography.strokeColor || '#000000';
-              ctx.strokeText(wObj.word, cursorX, y);
+
+            if (wordData?.emphasis) {
+              wScale *= isHighlighted ? 1.16 : 1.06;
             }
-            ctx.fillText(wObj.word, cursorX, y);
+
+            ctx.save();
+            const wordCenterX = cursorX + wordWidth / 2 + wOffsetX;
+            const wordCenterY = y + wOffsetY;
+            ctx.translate(wordCenterX, wordCenterY);
+            ctx.scale(wScale, wScale);
+            ctx.globalAlpha *= Math.max(0, Math.min(1, wAlpha));
+
+            if (wordData?.emphasis) {
+              ctx.shadowColor = wordData.color || effHighlightColor;
+              ctx.shadowBlur = (effShadowBlur + 18) * (height / 1000);
+            }
+
+            if (wordData?.color) {
+              ctx.fillStyle = wordData.color;
+            } else if (isHighlighted && (syncMode === 'word' || animation.preset === 'word_reveal' || inPreset === 'word_by_word')) {
+              ctx.fillStyle = effHighlightColor;
+            } else {
+              ctx.fillStyle = baseFillStyle;
+            }
+
+            if (effStrokeWidth > 0) {
+              ctx.lineWidth = effStrokeWidth * (height / 1000);
+              ctx.strokeStyle = effStrokeColor;
+              ctx.strokeText(wObj.word, -wordWidth / 2, 0);
+            }
+            ctx.fillText(wObj.word, -wordWidth / 2, 0);
+            ctx.restore();
+
             cursorX += ctx.measureText(wObj.word + ' ').width;
           });
           ctx.textAlign = origAlign;
         } else {
-          if ((typography.strokeWidth || 0) > 0) {
-            ctx.lineWidth = typography.strokeWidth * (height / 1000);
-            ctx.strokeStyle = typography.strokeColor || '#000000';
+          if (effStrokeWidth > 0) {
+            ctx.lineWidth = effStrokeWidth * (height / 1000);
+            ctx.strokeStyle = effStrokeColor;
             ctx.strokeText(lineText, 0, y);
           }
-          ctx.fillStyle = typography.textColor || '#FFFFFF';
+          ctx.fillStyle = baseFillStyle;
           ctx.fillText(lineText, 0, y);
         }
       });
@@ -999,6 +1482,7 @@ export default function App() {
   const [customOverlays, setCustomOverlays] = useState([]);
   const [selectedKeyframeIdx, setSelectedKeyframeIdx] = useState(0);
   const [isZipPackaging, setIsZipPackaging] = useState(false);
+  const [isDraggingCanvasText, setIsDraggingCanvasText] = useState(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -1011,6 +1495,9 @@ export default function App() {
   const [activeWordSyncIndex, setActiveWordSyncIndex] = useState(0);
   const [selectedLyricId, setSelectedLyricId] = useState(null);
   const [timelineZoom, setTimelineZoom] = useState(1);
+  const [inspectorSection, setInspectorSection] = useState('typography');
+  const [copiedLineConfig, setCopiedLineConfig] = useState(null);
+  const [selectedWordEditIdx, setSelectedWordEditIdx] = useState(0);
 
   const [showExportModal, setShowExportModal] = useState(false);
   const [showProjectModal, setShowProjectModal] = useState(false);
@@ -1068,6 +1555,109 @@ export default function App() {
     return ctx;
   }, []);
 
+  // ==========================================
+  // SHARED MASTER AUDIO-VIDEO SYNCHRONIZATION CONTROLLER
+  // ==========================================
+  const syncSlaveVideosToMasterClock = useCallback((masterAudioSec, forceHardSeek = false, activePlaying = isPlayingRef.current, rate = playbackRate || 1) => {
+    const videos = [
+      mediaAssetsRef.current.bgVideoElement,
+      mediaAssetsRef.current.overlayVideoElement
+    ].filter(Boolean);
+
+    videos.forEach((vid) => {
+      silenceVideoElement(vid);
+      if (vid.readyState < 1) return;
+
+      const targetVidTime = computeTargetVideoTime(masterAudioSec, vid);
+      const actualVidTime = vid.currentTime || 0;
+      const dur = vid.duration && isFinite(vid.duration) ? vid.duration : 0;
+
+      let drift = targetVidTime - actualVidTime;
+      if (dur > 0) {
+        if (drift > dur / 2) drift -= dur;
+        else if (drift < -dur / 2) drift += dur;
+      }
+      const absDrift = Math.abs(drift);
+
+      if (!activePlaying) {
+        if (!vid.paused) {
+          try { vid.pause(); } catch (_) {}
+        }
+        if (forceHardSeek || absDrift > 0.03) {
+          if (!vid.seeking) {
+            try { vid.currentTime = targetVidTime; } catch (_) {}
+          }
+        }
+        return;
+      }
+
+      // Master is playing: ensure slave video is playing
+      if (vid.paused && vid.readyState >= 2 && !vid.seeking) {
+        vid.play().catch(() => {});
+      }
+
+      // Controlled seek for significant drift or explicit user seek
+      if (forceHardSeek || absDrift > 0.22) {
+        if (!vid.seeking) {
+          try {
+            vid.currentTime = targetVidTime;
+            if (Math.abs(vid.playbackRate - rate) > 0.01) vid.playbackRate = rate;
+          } catch (_) {}
+        }
+      } else if (absDrift > 0.025) {
+        // Gentle proportional playbackRate nudge for minor drift (no visible jump)
+        const correctionFactor = Math.max(-0.07, Math.min(0.07, drift * 0.45));
+        const desiredRate = Math.max(0.25, Math.min(4.0, rate * (1 + correctionFactor)));
+        if (Math.abs(vid.playbackRate - desiredRate) > 0.004) {
+          try { vid.playbackRate = desiredRate; } catch (_) {}
+        }
+      } else if (Math.abs(vid.playbackRate - rate) > 0.004) {
+        try { vid.playbackRate = rate; } catch (_) {}
+      }
+    });
+  }, [playbackRate]);
+
+  // Attach requestVideoFrameCallback (where supported) to slave videos for frame-aware drift correction
+  const bindVideoFrameMonitor = useCallback((vid) => {
+    if (!vid || vid.__rvfcBound) return;
+    silenceVideoElement(vid);
+    vid.__rvfcBound = true;
+
+    const onLoadedMeta = () => {
+      silenceVideoElement(vid);
+      vid.__originOffset = getVideoOriginOffset(vid);
+      syncSlaveVideosToMasterClock(currentTimeRef.current, true, isPlayingRef.current, playbackRate || 1);
+    };
+    vid.addEventListener('loadedmetadata', onLoadedMeta);
+    vid.addEventListener('canplay', () => {
+      silenceVideoElement(vid);
+      if (isPlayingRef.current && vid.paused) {
+        syncSlaveVideosToMasterClock(currentTimeRef.current, false, true, playbackRate || 1);
+      }
+    });
+    vid.addEventListener('stalled', () => {
+      if (isPlayingRef.current) {
+        syncSlaveVideosToMasterClock(currentTimeRef.current, true, true, playbackRate || 1);
+      }
+    });
+    vid.addEventListener('waiting', () => {
+      if (isPlayingRef.current) {
+        syncSlaveVideosToMasterClock(currentTimeRef.current, false, true, playbackRate || 1);
+      }
+    });
+
+    if (typeof vid.requestVideoFrameCallback === 'function') {
+      const rvfcLoop = () => {
+        if (!vid.__rvfcBound) return;
+        if (isPlayingRef.current) {
+          syncSlaveVideosToMasterClock(currentTimeRef.current, false, true, playbackRate || 1);
+        }
+        vid.__rvfcId = vid.requestVideoFrameCallback(rvfcLoop);
+      };
+      vid.__rvfcId = vid.requestVideoFrameCallback(rvfcLoop);
+    }
+  }, [syncSlaveVideosToMasterClock, playbackRate]);
+
   const stopWebAudioPlayback = useCallback(() => {
     if (webAudioSourceRef.current) {
       try {
@@ -1082,7 +1672,8 @@ export default function App() {
     }
     isPlayingRef.current = false;
     setIsPlaying(false);
-  }, []);
+    syncSlaveVideosToMasterClock(currentTimeRef.current, false, false, playbackRate || 1);
+  }, [syncSlaveVideosToMasterClock, playbackRate]);
 
   const startWebAudioPlayback = useCallback(async (fromOffset = null) => {
     const ctx = await getUnlockedAudioContext();
@@ -1110,24 +1701,44 @@ export default function App() {
       gainNode.connect(ctx.destination);
       webAudioSourceRef.current = source;
       webAudioGainRef.current = gainNode;
-      webAudioStartCtxTimeRef.current = ctx.currentTime;
-      webAudioStartOffsetRef.current = startOffset;
+
+      // Pre-align slave videos to exact startOffset before starting master clock
       currentTimeRef.current = startOffset;
       setCurrentTime(startOffset);
+      syncSlaveVideosToMasterClock(startOffset, true, true, playbackRate || 1);
+
+      webAudioStartCtxTimeRef.current = ctx.currentTime;
+      webAudioStartOffsetRef.current = startOffset;
 
       source.onended = () => {
         if (isPlayingRef.current) {
           isPlayingRef.current = false;
           setIsPlaying(false);
+          syncSlaveVideosToMasterClock(currentTimeRef.current, true, false, playbackRate || 1);
         }
       };
       source.start(0, startOffset);
       isPlayingRef.current = true;
       setIsPlaying(true);
+      syncSlaveVideosToMasterClock(startOffset, false, true, playbackRate || 1);
+      return true;
+    } else if (audioRef.current && projectRef.current?.audio?.audioUrl) {
+      // Fallback HTMLAudioElement master clock if WebAudio buffer unavailable
+      const audioEl = audioRef.current;
+      audioEl.currentTime = startOffset;
+      audioEl.playbackRate = playbackRate || 1;
+      audioEl.muted = isMuted;
+      audioEl.volume = isMuted ? 0 : volume;
+      currentTimeRef.current = startOffset;
+      setCurrentTime(startOffset);
+      syncSlaveVideosToMasterClock(startOffset, true, true, playbackRate || 1);
+      await audioEl.play();
+      isPlayingRef.current = true;
+      setIsPlaying(true);
       return true;
     }
     return false;
-  }, [getUnlockedAudioContext, stopWebAudioPlayback, playbackRate, isMuted, volume]);
+  }, [getUnlockedAudioContext, stopWebAudioPlayback, playbackRate, isMuted, volume, syncSlaveVideosToMasterClock]);
 
   const playSyncTapFeedback = useCallback(async () => {
     if (!syncTapSound) return;
@@ -1364,6 +1975,17 @@ export default function App() {
     }
   }, [volume, isMuted]);
 
+  // Re-synchronize slave videos automatically when returning from an inactive browser tab
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        syncSlaveVideosToMasterClock(currentTimeRef.current, true, isPlayingRef.current, playbackRate || 1);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [syncSlaveVideosToMasterClock, playbackRate]);
+
   useEffect(() => {
     let rafId;
     let lastUiSync = 0;
@@ -1371,15 +1993,26 @@ export default function App() {
       const proj = projectRef.current;
       const maxDur = proj?.audio?.duration || 24;
 
-      if (isPlayingRef.current && sharedAudioCtxRef.current && webAudioSourceRef.current) {
-        const elapsed = (sharedAudioCtxRef.current.currentTime - webAudioStartCtxTimeRef.current) * (webAudioSourceRef.current.playbackRate?.value || 1);
-        const liveTime = Math.min(maxDur, webAudioStartOffsetRef.current + elapsed);
+      if (isPlayingRef.current) {
+        let liveTime = currentTimeRef.current;
+        if (sharedAudioCtxRef.current && webAudioSourceRef.current) {
+          const elapsed = (sharedAudioCtxRef.current.currentTime - webAudioStartCtxTimeRef.current) * (webAudioSourceRef.current.playbackRate?.value || 1);
+          liveTime = Math.min(maxDur, webAudioStartOffsetRef.current + elapsed);
+        } else if (audioRef.current && !audioRef.current.paused) {
+          liveTime = Math.min(maxDur, audioRef.current.currentTime);
+        }
         currentTimeRef.current = liveTime;
+
         if (liveTime >= maxDur) {
+          currentTimeRef.current = maxDur;
+          setCurrentTime(maxDur);
           stopWebAudioPlayback();
-        } else if (timestamp - lastUiSync > 80) {
-          setCurrentTime(liveTime);
-          lastUiSync = timestamp;
+        } else {
+          syncSlaveVideosToMasterClock(liveTime, false, true, playbackRate || 1);
+          if (timestamp - lastUiSync > 70) {
+            setCurrentTime(liveTime);
+            lastUiSync = timestamp;
+          }
         }
       }
 
@@ -1395,7 +2028,7 @@ export default function App() {
     };
     rafId = requestAnimationFrame(renderLoop);
     return () => cancelAnimationFrame(rafId);
-  }, [stopWebAudioPlayback]);
+  }, [stopWebAudioPlayback, syncSlaveVideosToMasterClock, playbackRate]);
 
   const togglePlay = async () => {
     if (!decodedAudioBufferRef.current && !project.audio?.audioUrl) {
@@ -1435,12 +2068,9 @@ export default function App() {
     const validTime = Math.max(0, Math.min(project.audio?.duration || 100, time));
     currentTimeRef.current = validTime;
     setCurrentTime(validTime);
-    if (isPlayingRef.current) startWebAudioPlayback(validTime);
-    if (mediaAssetsRef.current.bgVideoElement) {
-      mediaAssetsRef.current.bgVideoElement.currentTime = validTime % (mediaAssetsRef.current.bgVideoElement.duration || 10);
-    }
-    if (mediaAssetsRef.current.overlayVideoElement) {
-      mediaAssetsRef.current.overlayVideoElement.currentTime = validTime % (mediaAssetsRef.current.overlayVideoElement.duration || 10);
+    syncSlaveVideosToMasterClock(validTime, true, isPlayingRef.current, playbackRate || 1);
+    if (isPlayingRef.current) {
+      startWebAudioPlayback(validTime);
     }
   };
 
@@ -1658,6 +2288,217 @@ export default function App() {
     setLyricsRawText(next.map(l => l.text).join('\n'));
   };
 
+  // ==========================================
+  // PER-LINE INSPECTOR & STYLE / ANIMATION HELPERS
+  // ==========================================
+  const activeInspectedLineIndex = project.lyrics.findIndex(l => l.id === selectedLyricId);
+  const effectiveInspectedIndex = activeInspectedLineIndex >= 0 ? activeInspectedLineIndex : activeSyncIndex;
+  const inspectedLine = project.lyrics[effectiveInspectedIndex] || null;
+
+  const updateLineByIndex = useCallback((lineIdx, updater) => {
+    if (lineIdx < 0 || lineIdx >= project.lyrics.length) return;
+    const updated = [...project.lyrics];
+    const target = updated[lineIdx];
+    const nextLine = typeof updater === 'function' ? updater(target) : { ...target, ...updater };
+    updated[lineIdx] = nextLine;
+    updateProject({ lyrics: updated });
+  }, [project.lyrics, updateProject]);
+
+  const updateInspectedLineStyle = (patch) => {
+    if (!inspectedLine) return;
+    updateLineByIndex(effectiveInspectedIndex, (line) => ({
+      ...line,
+      style: { ...(line.style || {}), ...patch }
+    }));
+    // Automatically keep playhead inside the inspected line so font size / style edits are visible immediately on canvas
+    if (
+      !isPlayingRef.current &&
+      (currentTimeRef.current < inspectedLine.startTime || currentTimeRef.current > inspectedLine.endTime)
+    ) {
+      const previewMoment = Number(
+        Math.min(inspectedLine.endTime - 0.05, inspectedLine.startTime + Math.min(0.45, (inspectedLine.endTime - inspectedLine.startTime) * 0.4)).toFixed(2)
+      );
+      currentTimeRef.current = Math.max(0, previewMoment);
+      setCurrentTime(Math.max(0, previewMoment));
+    }
+  };
+
+  // Update Global Typography AND clear conflicting per-line overrides so global Font Size / Font / Position always works across all lines
+  const updateGlobalTypography = useCallback((patch) => {
+    const patchKeys = Object.keys(patch);
+    updateProject((prev) => {
+      const nextTypography = { ...prev.typography, ...patch };
+      const nextLyrics = (prev.lyrics || []).map((line) => {
+        if (!line.style) return line;
+        const cleanedStyle = { ...line.style };
+        patchKeys.forEach((k) => {
+          delete cleanedStyle[k];
+        });
+        return { ...line, style: cleanedStyle };
+      });
+      return {
+        typography: nextTypography,
+        lyrics: nextLyrics
+      };
+    });
+  }, [updateProject]);
+
+  const updateInspectedLineAnim = (patch) => {
+    if (!inspectedLine) return;
+    updateLineByIndex(effectiveInspectedIndex, (line) => ({
+      ...line,
+      anim: { ...(line.anim || {}), ...patch }
+    }));
+  };
+
+  const updateInspectedWord = (wordIdx, patch) => {
+    if (!inspectedLine) return;
+    updateLineByIndex(effectiveInspectedIndex, (line) => {
+      const rawWords = (line.text || '').split(/\s+/).filter(Boolean);
+      const existingWords = Array.isArray(line.words) && line.words.length === rawWords.length
+        ? [...line.words]
+        : rawWords.map((w, i) => ({
+            word: w,
+            startTime: Number((line.startTime + (i / Math.max(1, rawWords.length)) * (line.endTime - line.startTime)).toFixed(2)),
+            endTime: Number((line.startTime + ((i + 1) / Math.max(1, rawWords.length)) * (line.endTime - line.startTime)).toFixed(2))
+          }));
+      if (existingWords[wordIdx]) {
+        existingWords[wordIdx] = { ...existingWords[wordIdx], ...patch };
+      }
+      return { ...line, words: existingWords };
+    });
+  };
+
+  const applyLinePresetToInspected = (preset) => {
+    if (!inspectedLine || !preset) return;
+    updateLineByIndex(effectiveInspectedIndex, (line) => ({
+      ...line,
+      presetId: preset.id,
+      style: { ...(line.style || {}), ...preset.style },
+      anim: { ...(line.anim || {}), ...preset.anim }
+    }));
+    handleSeek(inspectedLine.startTime + 0.15);
+    showToast(`Applied "${preset.name}" preset to Line #${effectiveInspectedIndex + 1}`, 'success');
+  };
+
+  const handleCopyLineStyle = () => {
+    if (!inspectedLine) return;
+    setCopiedLineConfig({
+      style: JSON.parse(JSON.stringify(inspectedLine.style || {})),
+      anim: JSON.parse(JSON.stringify(inspectedLine.anim || {})),
+      presetId: inspectedLine.presetId || null
+    });
+    showToast(`Copied style & animations from Line #${effectiveInspectedIndex + 1}`, 'info');
+  };
+
+  const handlePasteLineStyle = () => {
+    if (!inspectedLine || !copiedLineConfig) {
+      showToast('Copy a line style first before pasting.', 'error');
+      return;
+    }
+    updateLineByIndex(effectiveInspectedIndex, (line) => ({
+      ...line,
+      presetId: copiedLineConfig.presetId,
+      style: JSON.parse(JSON.stringify(copiedLineConfig.style || {})),
+      anim: JSON.parse(JSON.stringify(copiedLineConfig.anim || {}))
+    }));
+    showToast(`Pasted style onto Line #${effectiveInspectedIndex + 1}`, 'success');
+  };
+
+  const handleResetLineStyle = () => {
+    if (!inspectedLine) return;
+    updateLineByIndex(effectiveInspectedIndex, (line) => {
+      const cleanWords = (line.words || []).map(w => ({
+        word: w.word,
+        startTime: w.startTime,
+        endTime: w.endTime
+      }));
+      return {
+        ...line,
+        presetId: null,
+        style: {},
+        anim: {},
+        words: cleanWords
+      };
+    });
+    showToast(`Reset Line #${effectiveInspectedIndex + 1} to global studio defaults.`, 'info');
+  };
+
+  const handleApplyStyleToAllLines = () => {
+    if (!inspectedLine) return;
+    const styleCopy = JSON.parse(JSON.stringify(inspectedLine.style || {}));
+    const animCopy = JSON.parse(JSON.stringify(inspectedLine.anim || {}));
+    const presetIdCopy = inspectedLine.presetId || null;
+    const updated = project.lyrics.map(line => ({
+      ...line,
+      presetId: presetIdCopy,
+      style: JSON.parse(JSON.stringify(styleCopy)),
+      anim: JSON.parse(JSON.stringify(animCopy))
+    }));
+    updateProject({ lyrics: updated });
+    showToast(`Applied Line #${effectiveInspectedIndex + 1}'s style & animation to all ${updated.length} lines!`, 'success');
+  };
+
+  const handleSmartAISuggestForLine = (applyAll = false) => {
+    if (!project.lyrics.length) {
+      showToast('Add or paste lyrics first to run Smart Animation Suggestions.', 'error');
+      return;
+    }
+    if (applyAll) {
+      const updated = project.lyrics.map((line) => {
+        if (line.isInstrumental) return line;
+        const suggestion = analyzeLyricEmotionAndSuggest(line.text);
+        const preset = LINE_STYLE_PRESETS.find(p => p.id === suggestion.presetId) || LINE_STYLE_PRESETS[0];
+        return {
+          ...line,
+          presetId: preset.id,
+          aiMood: suggestion.mood,
+          style: { ...(line.style || {}), ...preset.style },
+          anim: { ...(line.anim || {}), ...preset.anim }
+        };
+      });
+      updateProject({ lyrics: updated });
+      showToast(`✨ Smart AI analyzed tone & assigned tailored animations to all ${updated.length} lines!`, 'success');
+    } else if (inspectedLine) {
+      const suggestion = analyzeLyricEmotionAndSuggest(inspectedLine.text);
+      const preset = LINE_STYLE_PRESETS.find(p => p.id === suggestion.presetId) || LINE_STYLE_PRESETS[0];
+      updateLineByIndex(effectiveInspectedIndex, (line) => ({
+        ...line,
+        presetId: preset.id,
+        aiMood: suggestion.mood,
+        style: { ...(line.style || {}), ...preset.style },
+        anim: { ...(line.anim || {}), ...preset.anim }
+      }));
+      handleSeek(inspectedLine.startTime + 0.15);
+      showToast(`✨ [${suggestion.mood}] ${suggestion.reason}`, 'success');
+    }
+  };
+
+  const handlePreviewSelectedLine = (lineObj) => {
+    const target = lineObj || inspectedLine;
+    if (!target) return;
+    handleSeek(target.startTime);
+    if (!isPlayingRef.current) {
+      startWebAudioPlayback(target.startTime);
+    }
+  };
+
+  const handleReorderLyricLine = (idx, direction) => {
+    const targetIdx = idx + direction;
+    if (targetIdx < 0 || targetIdx >= project.lyrics.length) return;
+    const updated = [...project.lyrics];
+    // Swap text, style, anim & words while preserving chronological timeline slots
+    const slotA = { startTime: updated[idx].startTime, endTime: updated[idx].endTime };
+    const slotB = { startTime: updated[targetIdx].startTime, endTime: updated[targetIdx].endTime };
+    const itemA = { ...updated[idx], startTime: slotB.startTime, endTime: slotB.endTime };
+    const itemB = { ...updated[targetIdx], startTime: slotA.startTime, endTime: slotA.endTime };
+    updated[idx] = itemB;
+    updated[targetIdx] = itemA;
+    updateProject({ lyrics: updated });
+    setSelectedLyricId(itemA.id);
+    setActiveSyncIndex(targetIdx);
+  };
+
   const handleBgMediaUpload = (file) => {
     if (!file) return;
     const url = URL.createObjectURL(file);
@@ -1672,20 +2513,36 @@ export default function App() {
     cacheSessionAssetToIDB(item.id, file, { type: 'background', fileName: file.name });
 
     if (isVideo) {
+      if (mediaAssetsRef.current.bgVideoElement) {
+        try {
+          mediaAssetsRef.current.bgVideoElement.__rvfcBound = false;
+          mediaAssetsRef.current.bgVideoElement.pause();
+          mediaAssetsRef.current.bgVideoElement.removeAttribute('src');
+          mediaAssetsRef.current.bgVideoElement.load();
+        } catch (_) {}
+      }
       const vid = document.createElement('video');
+      silenceVideoElement(vid);
+      vid.preload = 'auto';
       vid.src = url;
-      vid.muted = true;
-      vid.loop = true;
-      vid.playsInline = true;
       vid.onloadeddata = () => {
-        vid.play().catch(() => {});
+        silenceVideoElement(vid);
+        vid.__originOffset = getVideoOriginOffset(vid);
         mediaAssetsRef.current.bgVideoElement = vid;
         mediaAssetsRef.current.bgImageElement = null;
+        bindVideoFrameMonitor(vid);
+        syncSlaveVideosToMasterClock(currentTimeRef.current, true, isPlayingRef.current, playbackRate || 1);
         setCustomBackgrounds(p => [item, ...p]);
         updateProject(p => ({ background: { ...p.background, type: 'custom', customUrl: url, customFileName: file.name, customMediaType: 'video' } }));
         showToast(`Loaded video background: ${file.name} (Session Asset)`, 'success');
       };
     } else {
+      if (mediaAssetsRef.current.bgVideoElement) {
+        try {
+          mediaAssetsRef.current.bgVideoElement.__rvfcBound = false;
+          mediaAssetsRef.current.bgVideoElement.pause();
+        } catch (_) {}
+      }
       const img = new Image();
       img.src = url;
       img.onload = () => {
@@ -1712,15 +2569,25 @@ export default function App() {
     cacheSessionAssetToIDB(newOvItem.id, file, { type: 'overlay', fileName: file.name });
 
     if (isVideo) {
+      if (mediaAssetsRef.current.overlayVideoElement) {
+        try {
+          mediaAssetsRef.current.overlayVideoElement.__rvfcBound = false;
+          mediaAssetsRef.current.overlayVideoElement.pause();
+          mediaAssetsRef.current.overlayVideoElement.removeAttribute('src');
+          mediaAssetsRef.current.overlayVideoElement.load();
+        } catch (_) {}
+      }
       const vid = document.createElement('video');
+      silenceVideoElement(vid);
+      vid.preload = 'auto';
       vid.src = url;
-      vid.muted = true;
-      vid.loop = true;
-      vid.playsInline = true;
       vid.onloadeddata = () => {
-        vid.play().catch(() => {});
+        silenceVideoElement(vid);
+        vid.__originOffset = getVideoOriginOffset(vid);
         mediaAssetsRef.current.overlayVideoElement = vid;
         mediaAssetsRef.current.overlayImageElement = null;
+        bindVideoFrameMonitor(vid);
+        syncSlaveVideosToMasterClock(currentTimeRef.current, true, isPlayingRef.current, playbackRate || 1);
         setCustomOverlays(prev => [newOvItem, ...prev]);
         updateProject(prev => ({
           overlay: { ...prev.overlay, enabled: true, customUrl: url, customFileName: file.name, mediaType: 'video' }
@@ -1728,6 +2595,12 @@ export default function App() {
         showToast(`Loaded WebM/Video Overlay "${file.name}"`, 'success');
       };
     } else {
+      if (mediaAssetsRef.current.overlayVideoElement) {
+        try {
+          mediaAssetsRef.current.overlayVideoElement.__rvfcBound = false;
+          mediaAssetsRef.current.overlayVideoElement.pause();
+        } catch (_) {}
+      }
       const img = new Image();
       img.src = url;
       img.onload = () => {
@@ -1973,14 +2846,16 @@ export default function App() {
 
         if (isVid) {
           const vid = document.createElement('video');
+          silenceVideoElement(vid);
+          vid.preload = 'auto';
           vid.src = bgUrl;
-          vid.muted = true;
-          vid.loop = true;
-          vid.playsInline = true;
           vid.onloadeddata = () => {
-            vid.play().catch(() => {});
+            silenceVideoElement(vid);
+            vid.__originOffset = getVideoOriginOffset(vid);
             mediaAssetsRef.current.bgVideoElement = vid;
             mediaAssetsRef.current.bgImageElement = null;
+            bindVideoFrameMonitor(vid);
+            syncSlaveVideosToMasterClock(currentTimeRef.current, true, isPlayingRef.current, playbackRate || 1);
           };
         } else {
           const img = new Image();
@@ -2004,14 +2879,16 @@ export default function App() {
 
         if (isVid) {
           const vid = document.createElement('video');
+          silenceVideoElement(vid);
+          vid.preload = 'auto';
           vid.src = ovUrl;
-          vid.muted = true;
-          vid.loop = true;
-          vid.playsInline = true;
           vid.onloadeddata = () => {
-            vid.play().catch(() => {});
+            silenceVideoElement(vid);
+            vid.__originOffset = getVideoOriginOffset(vid);
             mediaAssetsRef.current.overlayVideoElement = vid;
             mediaAssetsRef.current.overlayImageElement = null;
+            bindVideoFrameMonitor(vid);
+            syncSlaveVideosToMasterClock(currentTimeRef.current, true, isPlayingRef.current, playbackRate || 1);
           };
         } else {
           const img = new Image();
@@ -2056,21 +2933,39 @@ export default function App() {
 
     const { width, height } = getResolutionDimensions(exportConfig.resolution, project.aspectRatio);
     const fps = exportConfig.fps || 30;
-    const duration = Math.min(project.audio?.duration || 24, 300);
+    const frameIntervalSec = 1 / fps;
+    const duration = Math.min(decodedAudioBufferRef.current?.duration || project.audio?.duration || 24, 300);
 
     const offscreenCanvas = document.createElement('canvas');
     offscreenCanvas.width = width;
     offscreenCanvas.height = height;
     const ctx = offscreenCanvas.getContext('2d');
 
+    const bgVid = mediaAssetsRef.current.bgVideoElement;
+    const ovVid = mediaAssetsRef.current.overlayVideoElement;
+
     try {
+      // Pre-align any custom background/overlay videos to 0.00s and ensure their audio is completely muted
+      if (bgVid) {
+        silenceVideoElement(bgVid);
+        await seekVideoDeterministic(bgVid, 0);
+      }
+      if (ovVid) {
+        silenceVideoElement(ovVid);
+        await seekVideoDeterministic(ovVid, 0);
+      }
+
       const canvasStream = offscreenCanvas.captureStream(fps);
-      const combinedTracks = [...canvasStream.getVideoTracks()];
+      const videoTrack = canvasStream.getVideoTracks()[0];
+      // Strictly include ONLY the canvas video track and the uploaded song's WebAudio destination track
+      const combinedTracks = videoTrack ? [videoTrack] : [];
       let exportAudioCtx = null;
       let audioSource = null;
 
       if (decodedAudioBufferRef.current) {
-        exportAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        exportAudioCtx = new (window.AudioContext || window.webkitAudioContext)({
+          sampleRate: decodedAudioBufferRef.current.sampleRate || 44100
+        });
         if (exportAudioCtx.state === 'suspended') await exportAudioCtx.resume();
         const dest = exportAudioCtx.createMediaStreamDestination();
         audioSource = exportAudioCtx.createBufferSource();
@@ -2082,7 +2977,10 @@ export default function App() {
       const combinedStream = new MediaStream(combinedTracks);
       const mimeTypes = ['video/mp4;codecs=avc1,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm'];
       const selectedMime = mimeTypes.find(m => MediaRecorder.isTypeSupported(m)) || '';
-      const recorder = new MediaRecorder(combinedStream, selectedMime ? { mimeType: selectedMime, videoBitsPerSecond: 6000000 } : undefined);
+      const recorder = new MediaRecorder(
+        combinedStream,
+        selectedMime ? { mimeType: selectedMime, videoBitsPerSecond: 6000000 } : undefined
+      );
       const chunks = [];
       recorder.ondataavailable = e => { if (e.data && e.data.size > 0) chunks.push(e.data); };
 
@@ -2095,45 +2993,91 @@ export default function App() {
         recorder.onerror = reject;
       });
 
-      recorder.start(100);
-      if (audioSource) audioSource.start(0);
+      // Draw initial frame at t = 0.00s before starting recorder
+      renderFrameToCanvas(ctx, width, height, 0, project, mediaAssetsRef.current);
 
-      const startTimePerf = performance.now();
+      recorder.start(100);
+      const exportAudioStartCtxTime = exportAudioCtx ? exportAudioCtx.currentTime : 0;
+      const wallClockStartPerf = performance.now();
+
+      if (audioSource) audioSource.start(0, 0);
+      if (bgVid) {
+        silenceVideoElement(bgVid);
+        bgVid.playbackRate = 1;
+        bgVid.play().catch(() => {});
+      }
+      if (ovVid) {
+        silenceVideoElement(ovVid);
+        ovVid.playbackRate = 1;
+        ovVid.play().catch(() => {});
+      }
+
+      let lastRenderedQuantizedFrame = -1;
+
       await new Promise((resolve) => {
         const stepFrame = () => {
           if (exportAbortRef.current) {
             if (recorder.state !== 'inactive') recorder.stop();
             if (audioSource) { try { audioSource.stop(); } catch (_) {} }
+            if (bgVid) { try { bgVid.pause(); } catch (_) {} }
+            if (ovVid) { try { ovVid.pause(); } catch (_) {} }
             resolve();
             return;
           }
-          const elapsedSec = (performance.now() - startTimePerf) / 1000;
-          if (elapsedSec >= duration) {
+
+          // Authoritative master export clock locked to the AudioContext hardware clock
+          const masterElapsedSec = exportAudioCtx
+            ? Math.max(0, exportAudioCtx.currentTime - exportAudioStartCtxTime)
+            : (performance.now() - wallClockStartPerf) / 1000;
+
+          if (masterElapsedSec >= duration) {
+            renderFrameToCanvas(ctx, width, height, duration, project, mediaAssetsRef.current);
             if (recorder.state !== 'inactive') recorder.stop();
             if (audioSource) { try { audioSource.stop(); } catch (_) {} }
+            if (bgVid) { try { bgVid.pause(); } catch (_) {} }
+            if (ovVid) { try { ovVid.pause(); } catch (_) {} }
             resolve();
             return;
           }
-          renderFrameToCanvas(ctx, width, height, elapsedSec, project, mediaAssetsRef.current);
-          setExportProgress(Math.min(99, Math.round((elapsedSec / duration) * 100)));
-          setTimeout(stepFrame, 1000 / fps);
+
+          // Keep slave background/overlay videos tightly locked to masterElapsedSec (with seamless looping)
+          syncSlaveVideosToMasterClock(masterElapsedSec, false, true, 1);
+
+          const currentFrameIndex = Math.floor(masterElapsedSec * fps);
+          if (currentFrameIndex > lastRenderedQuantizedFrame) {
+            lastRenderedQuantizedFrame = currentFrameIndex;
+            const exactFrameTimestamp = Math.min(duration, currentFrameIndex * frameIntervalSec);
+            renderFrameToCanvas(ctx, width, height, exactFrameTimestamp, project, mediaAssetsRef.current);
+            if (videoTrack && typeof videoTrack.requestFrame === 'function') {
+              try { videoTrack.requestFrame(); } catch (_) {}
+            }
+            setExportProgress(Math.min(99, Math.round((masterElapsedSec / duration) * 100)));
+          }
+
+          const nextFrameTargetSec = (lastRenderedQuantizedFrame + 1) * frameIntervalSec;
+          const waitMs = Math.max(2, Math.min(16, (nextFrameTargetSec - masterElapsedSec) * 1000));
+          setTimeout(stepFrame, waitMs);
         };
         stepFrame();
       });
 
       if (exportAbortRef.current) {
         if (exportAudioCtx) exportAudioCtx.close();
+        syncSlaveVideosToMasterClock(currentTimeRef.current, true, false, playbackRate || 1);
         setExportStatus('idle');
         return;
       }
 
       const finalBlob = await recordingPromise;
       if (exportAudioCtx) exportAudioCtx.close();
+      syncSlaveVideosToMasterClock(currentTimeRef.current, true, false, playbackRate || 1);
       setExportedVideoUrl(URL.createObjectURL(finalBlob));
       setExportProgress(100);
       setExportStatus('completed');
       showToast('Video rendered with synchronized stereo audio, custom overlays & animations!', 'success');
     } catch (err) {
+      if (bgVid) { try { bgVid.pause(); } catch (_) {} }
+      if (ovVid) { try { ovVid.pause(); } catch (_) {} }
       setExportStatus('error');
       showToast('Export error: ' + err.message, 'error');
     }
@@ -2147,6 +3091,17 @@ export default function App() {
 
   const { width: canvasWidth, height: canvasHeight } = getResolutionDimensions('720p', project.aspectRatio);
   const currentActiveLyricIdx = project.lyrics.findIndex(l => currentTime >= l.startTime && currentTime <= l.endTime);
+
+  // Direct Canvas Drag-to-Position Handler (Mouse & Touch)
+  const updateTextPosFromPointer = useCallback((clientX, clientY) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return;
+    const xPct = Math.round(Math.max(5, Math.min(95, ((clientX - rect.left) / rect.width) * 100)));
+    const yPct = Math.round(Math.max(5, Math.min(95, ((clientY - rect.top) / rect.height) * 100)));
+    updateGlobalTypography({ positionX: xPct, positionY: yPct });
+  }, [updateGlobalTypography]);
 
   return (
     <div className="flex flex-col h-[100dvh] w-full bg-[#03060C] text-slate-100 font-sans overflow-hidden select-none">
@@ -2582,9 +3537,22 @@ export default function App() {
                   aspectRatio: project.aspectRatio === '9:16' ? '9/16' : project.aspectRatio === '16:9' ? '16/9' : '1/1',
                   height: compactPhonePreview ? '78px' : 'min(26vh, 185px)'
                 }}
-                className="relative rounded-xl overflow-hidden border border-slate-800 bg-black shadow-lg flex items-center justify-center transition-all duration-200"
+                onPointerDown={(e) => {
+                  setIsDraggingCanvasText(true);
+                  updateTextPosFromPointer(e.clientX, e.clientY);
+                }}
+                onPointerMove={(e) => {
+                  if (isDraggingCanvasText) updateTextPosFromPointer(e.clientX, e.clientY);
+                }}
+                onPointerUp={() => setIsDraggingCanvasText(false)}
+                onPointerLeave={() => setIsDraggingCanvasText(false)}
+                title="Drag anywhere on video to move lyrics position"
+                className="relative rounded-xl overflow-hidden border border-slate-800 bg-black shadow-lg flex items-center justify-center transition-all duration-200 cursor-move touch-none"
               >
-                <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} className="w-full h-full object-contain" />
+                <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} className="w-full h-full object-contain pointer-events-none" />
+                <div className="absolute bottom-1 right-1.5 px-1.5 py-0.5 rounded bg-black/60 text-[9px] font-mono text-sky-300 pointer-events-none">
+                  X:{project.typography.positionX ?? 50}% Y:{project.typography.positionY ?? 50}%
+                </div>
               </div>
 
               <div className="w-full flex items-center space-x-2 mt-2">
@@ -2759,9 +3727,12 @@ export default function App() {
                     {project.lyrics.map((line, idx) => (
                       <div
                         key={line.id}
-                        onClick={() => setActiveSyncIndex(idx)}
+                        onClick={() => {
+                          setActiveSyncIndex(idx);
+                          setSelectedLyricId(line.id);
+                        }}
                         className={`p-2 rounded-xl border text-xs flex items-center justify-between gap-1.5 transition ${
-                          idx === activeSyncIndex ? 'bg-blue-950/60 border-sky-400/60 text-white' : 'bg-[#081121] border-slate-800/80 text-slate-300'
+                          line.id === selectedLyricId || idx === activeSyncIndex ? 'bg-blue-950/60 border-sky-400/60 text-white' : 'bg-[#081121] border-slate-800/80 text-slate-300'
                         }`}
                       >
                         <span className="text-[10px] font-mono text-slate-500 w-4 shrink-0">{idx + 1}</span>
@@ -2775,6 +3746,22 @@ export default function App() {
                           }}
                           className="flex-1 min-w-0 bg-transparent text-xs text-white focus:outline-none truncate"
                         />
+                        {line.presetId && (
+                          <span className="text-[8px] font-mono uppercase px-1 py-0.5 rounded bg-sky-500/20 text-sky-300 shrink-0">
+                            {line.presetId}
+                          </span>
+                        )}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveSyncIndex(idx);
+                            setSelectedLyricId(line.id);
+                            setActiveTab('line_inspector');
+                          }}
+                          className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-600/30 text-sky-300 border border-sky-400/30 shrink-0"
+                        >
+                          Style
+                        </button>
                         <button
                           onClick={(e) => { e.stopPropagation(); handleSeek(line.startTime); }}
                           className="text-[10px] font-mono text-sky-400 shrink-0 px-1.5 py-0.5 rounded bg-black/30"
@@ -2789,6 +3776,70 @@ export default function App() {
                         </button>
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'line_inspector' && (
+                <div className="space-y-2.5 w-full">
+                  <div className="bg-[#081121] border border-sky-500/30 rounded-2xl p-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-sky-300">
+                        Line Inspector {inspectedLine ? `(#${effectiveInspectedIndex + 1})` : ''}
+                      </span>
+                      <div className="flex items-center space-x-1">
+                        <button onClick={() => handleSmartAISuggestForLine(false)} className="px-2 py-0.5 rounded bg-purple-600/30 border border-purple-400/40 text-purple-200 text-[10px] font-bold">
+                          ✨ AI Suggest
+                        </button>
+                        <button onClick={handleApplyStyleToAllLines} className="px-2 py-0.5 rounded bg-blue-600/30 border border-sky-400/40 text-sky-200 text-[10px] font-bold">
+                          Apply All
+                        </button>
+                      </div>
+                    </div>
+                    {inspectedLine ? (
+                      <>
+                        <div className="text-[11px] font-semibold text-white truncate bg-[#040914] px-2.5 py-1.5 rounded-lg border border-slate-800">
+                          &ldquo;{inspectedLine.text}&rdquo;
+                        </div>
+                        <div className="grid grid-cols-3 gap-1">
+                          {LINE_STYLE_PRESETS.slice(0, 6).map(pr => (
+                            <button
+                              key={pr.id}
+                              onClick={() => applyLinePresetToInspected(pr)}
+                              className={`p-1.5 rounded-lg border text-[10px] font-bold truncate ${
+                                inspectedLine.presetId === pr.id ? 'bg-blue-600 text-white border-sky-300' : 'bg-[#040914] text-slate-300 border-slate-800'
+                              }`}
+                            >
+                              {pr.name}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 pt-1">
+                          <div>
+                            <span className="text-[10px] text-slate-400 block mb-0.5">Entrance</span>
+                            <select
+                              value={inspectedLine.anim?.in || 'inherit'}
+                              onChange={(e) => updateInspectedLineAnim({ in: e.target.value })}
+                              className="w-full bg-[#040914] border border-slate-800 rounded-lg p-1.5 text-[11px] text-white"
+                            >
+                              {ENTRANCE_ANIMATIONS.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
+                            </select>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-slate-400 block mb-0.5">Exit</span>
+                            <select
+                              value={inspectedLine.anim?.out || 'inherit'}
+                              onChange={(e) => updateInspectedLineAnim({ out: e.target.value })}
+                              className="w-full bg-[#040914] border border-slate-800 rounded-lg p-1.5 text-[11px] text-white"
+                            >
+                              {EXIT_ANIMATIONS.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
+                            </select>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-xs text-slate-400">Select a lyric line in Sync tab first.</div>
+                    )}
                   </div>
                 </div>
               )}
@@ -2875,10 +3926,16 @@ export default function App() {
                   </div>
 
                   <div className="bg-[#081121] p-3 rounded-2xl border border-slate-800 space-y-2.5">
-                    <span className="text-xs font-bold text-white block">Typography &amp; Motion</span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-white">Typography, Position &amp; Style</span>
+                      <span className="text-[10px] font-mono text-sky-400">
+                        X:{project.typography.positionX ?? 50}% • Y:{project.typography.positionY ?? 50}%
+                      </span>
+                    </div>
+
                     <select
                       value={project.typography.fontFamily}
-                      onChange={(e) => updateProject(p => ({ typography: { ...p.typography, fontFamily: e.target.value } }))}
+                      onChange={(e) => updateGlobalTypography({ fontFamily: e.target.value })}
                       className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white"
                     >
                       {availableFonts.map(f => (
@@ -2886,19 +3943,185 @@ export default function App() {
                       ))}
                     </select>
 
-                    <div>
-                      <div className="flex justify-between text-[10px] text-slate-400 mb-1">
-                        <span>Font Size</span>
-                        <span>{project.typography.fontSize}px</span>
+                    {/* Horizontal & Vertical Position Sliders (Phone UI) */}
+                    <div className="p-2.5 rounded-xl bg-[#040914] border border-slate-800/90 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400">📍 Lyric Position (X &amp; Y)</span>
+                        <div className="flex items-center space-x-1">
+                          {[
+                            { label: 'Top', x: 50, y: 22 },
+                            { label: 'Center', x: 50, y: 50 },
+                            { label: 'Bottom', x: 50, y: 78 }
+                          ].map(pos => (
+                            <button
+                              key={pos.label}
+                              onClick={() => updateGlobalTypography({ positionX: pos.x, positionY: pos.y })}
+                              className="px-1.5 py-0.5 rounded bg-[#09152B] hover:bg-blue-600 text-[9px] font-bold text-slate-200 border border-slate-700"
+                            >
+                              {pos.label}
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                      <input
-                        type="range"
-                        min="24"
-                        max="96"
-                        value={project.typography.fontSize}
-                        onChange={(e) => updateProject(p => ({ typography: { ...p.typography, fontSize: parseInt(e.target.value, 10) } }))}
-                        className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
-                      />
+
+                      <div>
+                        <div className="flex justify-between text-[10px] text-slate-400 mb-0.5">
+                          <span>Horizontal (Left ↔ Right)</span>
+                          <span className="font-mono text-sky-300">{project.typography.positionX ?? 50}%</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="5"
+                          max="95"
+                          value={project.typography.positionX ?? 50}
+                          onChange={(e) => updateGlobalTypography({ positionX: parseInt(e.target.value, 10) })}
+                          className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                        />
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between text-[10px] text-slate-400 mb-0.5">
+                          <span>Vertical (Top ↕ Bottom)</span>
+                          <span className="font-mono text-sky-300">{project.typography.positionY ?? 50}%</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="5"
+                          max="95"
+                          value={project.typography.positionY ?? 50}
+                          onChange={(e) => updateGlobalTypography({ positionY: parseInt(e.target.value, 10) })}
+                          className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Font Size, Weight & Alignment */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <div className="flex justify-between text-[10px] text-slate-400 mb-1">
+                          <span>Font Size</span>
+                          <span className="font-mono text-slate-200">{project.typography.fontSize}px</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="20"
+                          max="110"
+                          value={project.typography.fontSize}
+                          onChange={(e) => updateGlobalTypography({ fontSize: parseInt(e.target.value, 10) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-[10px] text-slate-400 mb-1">
+                          <span>Max Width Wrap</span>
+                          <span className="font-mono text-slate-200">{project.typography.maxWidth ?? 84}%</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="40"
+                          max="96"
+                          value={project.typography.maxWidth ?? 84}
+                          onChange={(e) => updateGlobalTypography({ maxWidth: parseInt(e.target.value, 10) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-[10px] text-slate-400 block mb-1">Font Weight</span>
+                        <select
+                          value={project.typography.fontWeight || '700'}
+                          onChange={(e) => updateGlobalTypography({ fontWeight: e.target.value })}
+                          className="w-full bg-[#040914] border border-slate-800 rounded-lg p-1.5 text-xs text-white"
+                        >
+                          <option value="400">Regular (400)</option>
+                          <option value="600">Semi-Bold (600)</option>
+                          <option value="700">Bold (700)</option>
+                          <option value="800">Extra-Bold (800)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-slate-400 block mb-1">Text Align</span>
+                        <div className="grid grid-cols-3 gap-1 bg-[#040914] p-1 rounded-lg border border-slate-800">
+                          {['left', 'center', 'right'].map(al => (
+                            <button
+                              key={al}
+                              onClick={() => updateGlobalTypography({ align: al })}
+                              className={`py-1 rounded text-[10px] font-bold uppercase ${
+                                (project.typography.align || 'center') === al ? 'bg-blue-600 text-white' : 'text-slate-400'
+                              }`}
+                            >
+                              {al[0]}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Colors, Shadow, Stroke & Box */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="flex items-center justify-between bg-[#040914] p-2 rounded-xl border border-slate-800">
+                        <span className="text-[10px] text-slate-300">Text Color</span>
+                        <input
+                          type="color"
+                          value={project.typography.textColor}
+                          onChange={(e) => updateGlobalTypography({ textColor: e.target.value })}
+                          className="w-7 h-6 rounded bg-transparent cursor-pointer"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between bg-[#040914] p-2 rounded-xl border border-slate-800">
+                        <span className="text-[10px] text-slate-300">Highlight</span>
+                        <input
+                          type="color"
+                          value={project.typography.highlightColor}
+                          onChange={(e) => updateGlobalTypography({ highlightColor: e.target.value })}
+                          className="w-7 h-6 rounded bg-transparent cursor-pointer"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <div className="flex justify-between text-[10px] text-slate-400 mb-0.5">
+                          <span>Shadow Glow</span>
+                          <span>{project.typography.shadowBlur ?? 18}px</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="45"
+                          value={project.typography.shadowBlur ?? 18}
+                          onChange={(e) => updateGlobalTypography({ shadowBlur: parseInt(e.target.value, 10) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-[10px] text-slate-400 mb-0.5">
+                          <span>Outline Stroke</span>
+                          <span>{project.typography.strokeWidth ?? 0}px</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="12"
+                          value={project.typography.strokeWidth ?? 0}
+                          onChange={(e) => updateGlobalTypography({ strokeWidth: parseInt(e.target.value, 10) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-1">
+                      <label className="flex items-center space-x-1.5 text-[11px] text-slate-300">
+                        <input
+                          type="checkbox"
+                          checked={project.typography.showBox || false}
+                          onChange={(e) => updateGlobalTypography({ showBox: e.target.checked })}
+                          className="accent-blue-500 rounded"
+                        />
+                        <span>Show Background Pill Box</span>
+                      </label>
                     </div>
 
                     <select
@@ -2964,9 +4187,10 @@ export default function App() {
               {[
                 { id: 'audio_lyrics', label: 'Lyrics', icon: Icon.Music },
                 { id: 'sync', label: 'Sync', icon: Icon.Mic, domId: 'tour-nav-sync' },
+                { id: 'line_inspector', label: 'Line FX', icon: Icon.Sparkles },
                 { id: 'background', label: 'Visuals', icon: Icon.Image, domId: 'tour-nav-visuals' },
                 { id: 'typography', label: 'Fonts', icon: Icon.Type },
-                { id: 'animation', label: 'Motion', icon: Icon.Sparkles }
+                { id: 'animation', label: 'Global', icon: Icon.Table }
               ].map(t => {
                 const TIcon = t.icon;
                 const active = activeTab === t.id;
@@ -3136,9 +4360,12 @@ export default function App() {
                     {project.lyrics.map((line, idx) => (
                       <div
                         key={line.id}
-                        onClick={() => setActiveSyncIndex(idx)}
+                        onClick={() => {
+                          setActiveSyncIndex(idx);
+                          setSelectedLyricId(line.id);
+                        }}
                         className={`p-2.5 rounded-xl border text-xs flex items-center justify-between gap-2 cursor-pointer transition ${
-                          idx === activeSyncIndex
+                          line.id === selectedLyricId || idx === activeSyncIndex
                             ? 'bg-blue-950/70 border-sky-400/70 text-white'
                             : 'bg-[#091326] border-slate-800/80 text-slate-300 hover:border-slate-700'
                         }`}
@@ -3152,23 +4379,817 @@ export default function App() {
                             updated[idx] = { ...updated[idx], text: e.target.value };
                             updateProject({ lyrics: updated });
                           }}
-                          className="flex-1 bg-transparent text-xs text-white focus:outline-none"
+                          className="flex-1 bg-transparent text-xs text-white focus:outline-none min-w-0"
                         />
+                        {line.presetId && (
+                          <span className="text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30 shrink-0">
+                            {line.presetId}
+                          </span>
+                        )}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveSyncIndex(idx);
+                            setSelectedLyricId(line.id);
+                            setActiveTab('line_inspector');
+                          }}
+                          title="Inspect & Style This Line"
+                          className="px-2 py-0.5 rounded-md bg-blue-600/25 hover:bg-blue-600 text-[10px] font-bold text-sky-300 hover:text-white border border-sky-500/30 transition shrink-0"
+                        >
+                          Edit FX
+                        </button>
                         <span
                           onClick={(e) => { e.stopPropagation(); handleSeek(line.startTime); }}
-                          className="text-[10px] font-mono text-sky-400 hover:underline"
+                          className="text-[10px] font-mono text-sky-400 hover:underline shrink-0"
                         >
                           {formatTime(line.startTime)}
                         </span>
                         <button
                           onClick={(e) => { e.stopPropagation(); handleDeleteLyricLine(line.id); }}
-                          className="p-1 text-slate-500 hover:text-rose-400"
+                          className="p-1 text-slate-500 hover:text-rose-400 shrink-0"
                         >
                           <Icon.Trash />
                         </button>
                       </div>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* ==========================================
+                  CONTEXTUAL PER-LINE INSPECTOR (LINE FX)
+                  ========================================== */}
+              {activeTab === 'line_inspector' && (
+                <div className="space-y-3.5">
+                  {/* Line Selector & Quick Clipboard Bar */}
+                  <div className="bg-[#091326] border border-sky-500/30 rounded-2xl p-3.5 space-y-2.5 shadow-lg">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="min-w-0">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 block">
+                          Contextual Line Inspector
+                        </span>
+                        <select
+                          value={inspectedLine?.id || ''}
+                          onChange={(e) => {
+                            const idx = project.lyrics.findIndex(l => l.id === e.target.value);
+                            if (idx >= 0) {
+                              setSelectedLyricId(e.target.value);
+                              setActiveSyncIndex(idx);
+                            }
+                          }}
+                          className="mt-1 w-full bg-[#040914] border border-slate-800 rounded-xl px-2.5 py-1.5 text-xs font-bold text-white outline-none focus:border-sky-400"
+                        >
+                          {project.lyrics.length === 0 && <option value="">No lyrics available</option>}
+                          {project.lyrics.map((l, idx) => (
+                            <option key={l.id} value={l.id}>
+                              Line #{idx + 1}: {l.text.slice(0, 32)}{l.text.length > 32 ? '...' : ''}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <button
+                        onClick={() => handlePreviewSelectedLine(inspectedLine)}
+                        disabled={!inspectedLine}
+                        title="Preview this line from its start time"
+                        className="px-3 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white text-xs font-bold shadow shrink-0 flex items-center space-x-1"
+                      >
+                        <Icon.Play />
+                        <span>Preview</span>
+                      </button>
+                    </div>
+
+                    {/* Copy / Paste / Reset / Apply to All Toolbar */}
+                    <div className="grid grid-cols-4 gap-1.5 pt-1">
+                      <button
+                        onClick={handleCopyLineStyle}
+                        disabled={!inspectedLine}
+                        className="py-1.5 px-2 rounded-lg bg-[#040914] hover:bg-blue-950/60 border border-slate-800 text-[10px] font-semibold text-slate-200 transition"
+                      >
+                        Copy Style
+                      </button>
+                      <button
+                        onClick={handlePasteLineStyle}
+                        disabled={!inspectedLine || !copiedLineConfig}
+                        className="py-1.5 px-2 rounded-lg bg-[#040914] hover:bg-blue-950/60 disabled:opacity-40 border border-slate-800 text-[10px] font-semibold text-sky-300 transition"
+                      >
+                        Paste Style
+                      </button>
+                      <button
+                        onClick={handleResetLineStyle}
+                        disabled={!inspectedLine}
+                        className="py-1.5 px-2 rounded-lg bg-[#040914] hover:bg-rose-950/50 border border-slate-800 text-[10px] font-semibold text-rose-300 transition"
+                      >
+                        Reset
+                      </button>
+                      <button
+                        onClick={handleApplyStyleToAllLines}
+                        disabled={!inspectedLine}
+                        className="py-1.5 px-2 rounded-lg bg-blue-600/25 hover:bg-blue-600 border border-sky-400/40 text-[10px] font-bold text-sky-200 hover:text-white transition"
+                      >
+                        Apply All
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* AI-Assisted Lyric Tone Suggestion & 9 Reusable Presets */}
+                  <div className="bg-[#091326] border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-xs font-bold text-white block">Presets &amp; Smart AI Tone</span>
+                        <span className="text-[10px] text-slate-400">Starting points — fully customizable below</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <button
+                          onClick={() => handleSmartAISuggestForLine(false)}
+                          disabled={!inspectedLine}
+                          className="px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white text-[10px] font-bold shadow"
+                        >
+                          ✨ Suggest Line
+                        </button>
+                        <button
+                          onClick={() => handleSmartAISuggestForLine(true)}
+                          disabled={!project.lyrics.length}
+                          title="Auto-suggest animations for every line based on lyric meaning"
+                          className="px-2 py-1 rounded-lg bg-[#040914] hover:bg-indigo-950/60 border border-indigo-500/40 text-indigo-300 text-[10px] font-bold"
+                        >
+                          AI All
+                        </button>
+                      </div>
+                    </div>
+
+                    {inspectedLine?.aiMood && (
+                      <div className="px-2.5 py-1.5 rounded-lg bg-indigo-950/50 border border-indigo-500/30 text-[10px] text-indigo-200 flex items-center justify-between">
+                        <span>AI Tone: <strong>{inspectedLine.aiMood}</strong></span>
+                        <span className="font-mono uppercase text-sky-300">{inspectedLine.presetId}</span>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {LINE_STYLE_PRESETS.map(preset => (
+                        <button
+                          key={preset.id}
+                          onClick={() => applyLinePresetToInspected(preset)}
+                          title={preset.desc}
+                          className={`p-2 rounded-xl border text-left transition ${
+                            inspectedLine?.presetId === preset.id
+                              ? 'bg-blue-600/30 border-sky-400 text-white shadow'
+                              : 'bg-[#040914] border-slate-800/90 text-slate-300 hover:border-slate-700'
+                          }`}
+                        >
+                          <div className="text-[11px] font-bold truncate">{preset.name}</div>
+                          <div className="text-[9px] text-slate-400 truncate mt-0.5">{preset.desc}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Apple-Inspired Segmented Inspector Navigation */}
+                  {inspectedLine ? (
+                    <>
+                      <div className="grid grid-cols-4 gap-1 bg-[#040914] p-1 rounded-xl border border-slate-800">
+                        {[
+                          { id: 'text', label: 'Text' },
+                          { id: 'typography', label: 'Type' },
+                          { id: 'anim_in', label: 'Anim In' },
+                          { id: 'anim_out', label: 'Anim Out' },
+                          { id: 'words', label: 'Words' },
+                          { id: 'effects', label: 'Effects' },
+                          { id: 'timing', label: 'Timing' },
+                          { id: 'position', label: 'Position' }
+                        ].map(sec => (
+                          <button
+                            key={sec.id}
+                            onClick={() => setInspectorSection(sec.id)}
+                            className={`py-1.5 rounded-lg text-[10px] font-bold transition ${
+                              inspectorSection === sec.id
+                                ? 'bg-blue-600 text-white shadow'
+                                : 'text-slate-400 hover:text-slate-200'
+                            }`}
+                          >
+                            {sec.label}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* SECTION 1: TEXT & REORDER */}
+                      {inspectorSection === 'text' && (
+                        <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-bold text-white">Line Text &amp; Order</span>
+                            <div className="flex items-center space-x-1">
+                              <button
+                                onClick={() => handleReorderLyricLine(effectiveInspectedIndex, -1)}
+                                disabled={effectiveInspectedIndex <= 0}
+                                className="px-2 py-1 rounded bg-[#040914] border border-slate-800 text-[10px] text-slate-300 disabled:opacity-30"
+                              >
+                                ↑ Move Up
+                              </button>
+                              <button
+                                onClick={() => handleReorderLyricLine(effectiveInspectedIndex, 1)}
+                                disabled={effectiveInspectedIndex >= project.lyrics.length - 1}
+                                className="px-2 py-1 rounded bg-[#040914] border border-slate-800 text-[10px] text-slate-300 disabled:opacity-30"
+                              >
+                                ↓ Move Down
+                              </button>
+                            </div>
+                          </div>
+                          <textarea
+                            rows="3"
+                            value={inspectedLine.text}
+                            onChange={(e) => {
+                              const newText = e.target.value;
+                              updateLineByIndex(effectiveInspectedIndex, (l) => {
+                                const wordsArr = newText.trim().split(/\s+/).filter(Boolean);
+                                const dur = Math.max(0.2, l.endTime - l.startTime);
+                                const syncedWords = wordsArr.map((w, i) => ({
+                                  ...(l.words?.[i] || {}),
+                                  word: w,
+                                  startTime: l.words?.[i]?.startTime ?? Number((l.startTime + (i / Math.max(1, wordsArr.length)) * dur).toFixed(2)),
+                                  endTime: l.words?.[i]?.endTime ?? Number((l.startTime + ((i + 1) / Math.max(1, wordsArr.length)) * dur).toFixed(2))
+                                }));
+                                return { ...l, text: newText, words: syncedWords };
+                              });
+                            }}
+                            className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-sky-400 select-text"
+                          />
+                        </div>
+                      )}
+
+                      {/* SECTION 2: PER-LINE TYPOGRAPHY */}
+                      {inspectorSection === 'typography' && (
+                        <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                          <span className="text-xs font-bold text-white block">Per-Line Typography</span>
+                          <select
+                            value={inspectedLine.style?.fontFamily || project.typography.fontFamily}
+                            onChange={(e) => updateInspectedLineStyle({ fontFamily: e.target.value })}
+                            className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white"
+                          >
+                            {availableFonts.map(f => <option key={f.name} value={f.family}>{f.name}</option>)}
+                          </select>
+
+                          <div className="grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-[10px] text-slate-400 block mb-1">Font Weight</span>
+                              <select
+                                value={inspectedLine.style?.fontWeight || project.typography.fontWeight || '700'}
+                                onChange={(e) => updateInspectedLineStyle({ fontWeight: e.target.value })}
+                                className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white"
+                              >
+                                <option value="400">Regular (400)</option>
+                                <option value="500">Medium (500)</option>
+                                <option value="600">Semi-Bold (600)</option>
+                                <option value="700">Bold (700)</option>
+                                <option value="800">Extra-Bold (800)</option>
+                              </select>
+                            </div>
+                            <div>
+                              <span className="text-[10px] text-slate-400 block mb-1">Alignment</span>
+                              <div className="grid grid-cols-3 gap-1 bg-[#040914] p-1 rounded-xl border border-slate-800">
+                                {['left', 'center', 'right'].map(al => (
+                                  <button
+                                    key={al}
+                                    onClick={() => updateInspectedLineStyle({ align: al })}
+                                    className={`py-1 rounded-lg text-[10px] font-bold uppercase ${
+                                      (inspectedLine.style?.align || project.typography.align || 'center') === al
+                                        ? 'bg-blue-600 text-white'
+                                        : 'text-slate-400'
+                                    }`}
+                                  >
+                                    {al[0]}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                              <span>Font Size</span>
+                              <span className="font-mono text-sky-400">{inspectedLine.style?.fontSize ?? project.typography.fontSize}px</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="20"
+                              max="120"
+                              value={inspectedLine.style?.fontSize ?? project.typography.fontSize}
+                              onChange={(e) => updateInspectedLineStyle({ fontSize: parseInt(e.target.value, 10) })}
+                              className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Letter Spacing</span>
+                                <span className="font-mono text-slate-200">{inspectedLine.style?.letterSpacing ?? project.typography.letterSpacing ?? 1}px</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="-2"
+                                max="20"
+                                step="0.5"
+                                value={inspectedLine.style?.letterSpacing ?? project.typography.letterSpacing ?? 1}
+                                onChange={(e) => updateInspectedLineStyle({ letterSpacing: parseFloat(e.target.value) })}
+                                className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Line Spacing</span>
+                                <span className="font-mono text-slate-200">{inspectedLine.style?.lineHeight ?? project.typography.lineHeight ?? 1.35}x</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0.9"
+                                max="2.2"
+                                step="0.05"
+                                value={inspectedLine.style?.lineHeight ?? project.typography.lineHeight ?? 1.35}
+                                onChange={(e) => updateInspectedLineStyle({ lineHeight: parseFloat(e.target.value) })}
+                                className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-2 pt-1">
+                            <div className="flex items-center justify-between bg-[#040914] p-2 rounded-xl border border-slate-800">
+                              <span className="text-[11px] text-slate-300">Text Color</span>
+                              <input
+                                type="color"
+                                value={inspectedLine.style?.textColor || project.typography.textColor}
+                                onChange={(e) => updateInspectedLineStyle({ textColor: e.target.value })}
+                                className="w-7 h-6 rounded bg-transparent cursor-pointer"
+                              />
+                            </div>
+                            <div className="flex items-center justify-between bg-[#040914] p-2 rounded-xl border border-slate-800">
+                              <label className="flex items-center space-x-1.5 text-[11px] text-slate-300 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={inspectedLine.style?.useGradient || false}
+                                  onChange={(e) => updateInspectedLineStyle({ useGradient: e.target.checked })}
+                                  className="accent-sky-400 rounded"
+                                />
+                                <span>Gradient</span>
+                              </label>
+                              <input
+                                type="color"
+                                value={inspectedLine.style?.gradientColor || project.typography.highlightColor}
+                                onChange={(e) => updateInspectedLineStyle({ gradientColor: e.target.value, useGradient: true })}
+                                className="w-7 h-6 rounded bg-transparent cursor-pointer"
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                              <span>Text Opacity</span>
+                              <span className="font-mono text-slate-200">{inspectedLine.style?.opacity ?? 100}%</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="10"
+                              max="100"
+                              value={inspectedLine.style?.opacity ?? 100}
+                              onChange={(e) => updateInspectedLineStyle({ opacity: parseInt(e.target.value, 10) })}
+                              className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* SECTION 3: ANIMATION IN & MOTION / TRANSFORM */}
+                      {inspectorSection === 'anim_in' && (
+                        <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                          <span className="text-xs font-bold text-white block">Entrance, Motion &amp; Transform</span>
+                          <div>
+                            <label className="text-[11px] text-slate-400 block mb-1">Entrance Animation</label>
+                            <select
+                              value={inspectedLine.anim?.in || 'inherit'}
+                              onChange={(e) => updateInspectedLineAnim({ in: e.target.value })}
+                              className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white"
+                            >
+                              {ENTRANCE_ANIMATIONS.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
+                            </select>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                              <span>Entrance Duration</span>
+                              <span className="font-mono text-sky-400">{inspectedLine.anim?.inDur ?? project.animation.duration ?? 0.45}s</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0.1"
+                              max="1.5"
+                              step="0.05"
+                              value={inspectedLine.anim?.inDur ?? project.animation.duration ?? 0.45}
+                              onChange={(e) => updateInspectedLineAnim({ inDur: parseFloat(e.target.value) })}
+                              className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="text-[11px] text-slate-400 block mb-1">Continuous Motion</label>
+                            <select
+                              value={inspectedLine.anim?.motion || 'none'}
+                              onChange={(e) => updateInspectedLineAnim({ motion: e.target.value })}
+                              className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white"
+                            >
+                              {CONTINUOUS_MOTIONS.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                            </select>
+                          </div>
+
+                          <div>
+                            <label className="text-[11px] text-slate-400 block mb-1">Transform Mode</label>
+                            <select
+                              value={inspectedLine.anim?.transform || 'none'}
+                              onChange={(e) => updateInspectedLineAnim({ transform: e.target.value })}
+                              className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white"
+                            >
+                              {TRANSFORM_MODES.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+                            </select>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* SECTION 4: ANIMATION OUT */}
+                      {inspectorSection === 'anim_out' && (
+                        <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                          <span className="text-xs font-bold text-white block">Exit Animation</span>
+                          <div>
+                            <label className="text-[11px] text-slate-400 block mb-1">Exit Style</label>
+                            <select
+                              value={inspectedLine.anim?.out || 'inherit'}
+                              onChange={(e) => updateInspectedLineAnim({ out: e.target.value })}
+                              className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white"
+                            >
+                              {EXIT_ANIMATIONS.map(a => <option key={a.id} value={a.id}>{a.name}</option>)}
+                            </select>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                              <span>Exit Duration</span>
+                              <span className="font-mono text-sky-400">{inspectedLine.anim?.outDur ?? project.animation.duration ?? 0.45}s</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0.1"
+                              max="1.5"
+                              step="0.05"
+                              value={inspectedLine.anim?.outDur ?? project.animation.duration ?? 0.45}
+                              onChange={(e) => updateInspectedLineAnim({ outDur: parseFloat(e.target.value) })}
+                              className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* SECTION 5: WORD-LEVEL ANIMATION & EMPHASIS */}
+                      {inspectorSection === 'words' && (() => {
+                        const rawWords = (inspectedLine.text || '').split(/\s+/).filter(Boolean);
+                        const safeWIdx = Math.min(selectedWordEditIdx, Math.max(0, rawWords.length - 1));
+                        const wData = inspectedLine.words?.[safeWIdx] || { word: rawWords[safeWIdx] || '' };
+
+                        return (
+                          <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                            <span className="text-xs font-bold text-white block">Word-Level Styling &amp; Timing</span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {rawWords.map((w, wIdx) => {
+                                const wd = inspectedLine.words?.[wIdx];
+                                const isCustomized = wd?.color || wd?.emphasis || (wd?.scale && wd.scale !== 1) || wd?.delay;
+                                return (
+                                  <button
+                                    key={wIdx}
+                                    onClick={() => setSelectedWordEditIdx(wIdx)}
+                                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border transition ${
+                                      wIdx === safeWIdx
+                                        ? 'bg-sky-500 text-[#02060D] border-white shadow'
+                                        : isCustomized
+                                        ? 'bg-blue-950/70 text-sky-300 border-sky-400/50'
+                                        : 'bg-[#040914] text-slate-300 border-slate-800'
+                                    }`}
+                                  >
+                                    {w}
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            {rawWords.length > 0 && (
+                              <div className="space-y-2.5 pt-2 border-t border-slate-800">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-xs font-bold text-sky-300">Word: &ldquo;{rawWords[safeWIdx]}&rdquo;</span>
+                                  <label className="flex items-center space-x-1.5 text-xs text-amber-300 cursor-pointer">
+                                    <input
+                                      type="checkbox"
+                                      checked={wData.emphasis || false}
+                                      onChange={(e) => updateInspectedWord(safeWIdx, { emphasis: e.target.checked })}
+                                      className="accent-amber-400 rounded"
+                                    />
+                                    <span>★ Emphasis Glow &amp; Pop</span>
+                                  </label>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-2">
+                                  <div className="flex items-center justify-between bg-[#040914] p-2 rounded-xl border border-slate-800">
+                                    <span className="text-[11px] text-slate-300">Word Color</span>
+                                    <input
+                                      type="color"
+                                      value={wData.color || inspectedLine.style?.textColor || project.typography.textColor}
+                                      onChange={(e) => updateInspectedWord(safeWIdx, { color: e.target.value })}
+                                      className="w-7 h-6 rounded bg-transparent cursor-pointer"
+                                    />
+                                  </div>
+                                  <button
+                                    onClick={() => updateInspectedWord(safeWIdx, { color: null, scale: 1, emphasis: false, delay: 0, inEffect: 'none', outEffect: 'none' })}
+                                    className="bg-[#040914] hover:bg-slate-800 border border-slate-800 rounded-xl text-[11px] text-slate-400 font-semibold"
+                                  >
+                                    Reset Word
+                                  </button>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-3">
+                                  <div>
+                                    <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                      <span>Word Scale</span>
+                                      <span className="font-mono text-sky-300">{wData.scale ?? 1}x</span>
+                                    </div>
+                                    <input
+                                      type="range"
+                                      min="0.6"
+                                      max="1.8"
+                                      step="0.05"
+                                      value={wData.scale ?? 1}
+                                      onChange={(e) => updateInspectedWord(safeWIdx, { scale: parseFloat(e.target.value) })}
+                                      className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                                    />
+                                  </div>
+                                  <div>
+                                    <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                      <span>Anim Delay</span>
+                                      <span className="font-mono text-sky-300">{wData.delay ?? 0}s</span>
+                                    </div>
+                                    <input
+                                      type="range"
+                                      min="-0.4"
+                                      max="0.8"
+                                      step="0.05"
+                                      value={wData.delay ?? 0}
+                                      onChange={(e) => updateInspectedWord(safeWIdx, { delay: parseFloat(e.target.value) })}
+                                      className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-2">
+                                  <div>
+                                    <span className="text-[10px] text-slate-400 block mb-1">Word Entrance</span>
+                                    <select
+                                      value={wData.inEffect || 'none'}
+                                      onChange={(e) => updateInspectedWord(safeWIdx, { inEffect: e.target.value })}
+                                      className="w-full bg-[#040914] border border-slate-800 rounded-lg p-1.5 text-[11px] text-white"
+                                    >
+                                      <option value="none">Line Default</option>
+                                      <option value="pop">Scale Pop</option>
+                                      <option value="slide_up">Slide Up</option>
+                                      <option value="fade">Fade In</option>
+                                    </select>
+                                  </div>
+                                  <div>
+                                    <span className="text-[10px] text-slate-400 block mb-1">Word Exit</span>
+                                    <select
+                                      value={wData.outEffect || 'none'}
+                                      onChange={(e) => updateInspectedWord(safeWIdx, { outEffect: e.target.value })}
+                                      className="w-full bg-[#040914] border border-slate-800 rounded-lg p-1.5 text-[11px] text-white"
+                                    >
+                                      <option value="none">Line Default</option>
+                                      <option value="fade">Fade Out</option>
+                                      <option value="drop">Drop Down</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })()}
+
+                      {/* SECTION 6: EFFECTS (SHADOW, OUTLINE, GLOW, BLUR) */}
+                      {inspectorSection === 'effects' && (
+                        <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                          <span className="text-xs font-bold text-white block">Shadow, Outline, Glow &amp; Blur</span>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Shadow Blur</span>
+                                <span className="font-mono text-slate-200">{inspectedLine.style?.shadowBlur ?? project.typography.shadowBlur ?? 18}px</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0"
+                                max="50"
+                                value={inspectedLine.style?.shadowBlur ?? project.typography.shadowBlur ?? 18}
+                                onChange={(e) => updateInspectedLineStyle({ shadowBlur: parseInt(e.target.value, 10) })}
+                                className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Neon Glow</span>
+                                <span className="font-mono text-sky-300">{inspectedLine.style?.glowBlur ?? 0}px</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0"
+                                max="50"
+                                value={inspectedLine.style?.glowBlur ?? 0}
+                                onChange={(e) => updateInspectedLineStyle({ glowBlur: parseInt(e.target.value, 10) })}
+                                className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Outline Width</span>
+                                <span className="font-mono text-slate-200">{inspectedLine.style?.strokeWidth ?? project.typography.strokeWidth ?? 0}px</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0"
+                                max="14"
+                                value={inspectedLine.style?.strokeWidth ?? project.typography.strokeWidth ?? 0}
+                                onChange={(e) => updateInspectedLineStyle({ strokeWidth: parseInt(e.target.value, 10) })}
+                                className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Soft Blur</span>
+                                <span className="font-mono text-slate-200">{inspectedLine.style?.blur ?? 0}px</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0"
+                                max="20"
+                                step="0.5"
+                                value={inspectedLine.style?.blur ?? 0}
+                                onChange={(e) => updateInspectedLineStyle({ blur: parseFloat(e.target.value) })}
+                                className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-2 pt-1">
+                            <div className="flex items-center justify-between bg-[#040914] p-2 rounded-xl border border-slate-800">
+                              <span className="text-[11px] text-slate-300">Glow Color</span>
+                              <input
+                                type="color"
+                                value={inspectedLine.style?.glowColor || project.typography.highlightColor}
+                                onChange={(e) => updateInspectedLineStyle({ glowColor: e.target.value })}
+                                className="w-7 h-6 rounded bg-transparent cursor-pointer"
+                              />
+                            </div>
+                            <div className="flex items-center justify-between bg-[#040914] p-2 rounded-xl border border-slate-800">
+                              <span className="text-[11px] text-slate-300">Outline Color</span>
+                              <input
+                                type="color"
+                                value={inspectedLine.style?.strokeColor || project.typography.strokeColor || '#000000'}
+                                onChange={(e) => updateInspectedLineStyle({ strokeColor: e.target.value })}
+                                className="w-7 h-6 rounded bg-transparent cursor-pointer"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* SECTION 7: TIMING */}
+                      {inspectorSection === 'timing' && (
+                        <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                          <span className="text-xs font-bold text-white block">Line Timing &amp; Duration</span>
+                          <div className="grid grid-cols-2 gap-2.5">
+                            <div>
+                              <label className="text-[10px] text-slate-400 block mb-1">Start Time (sec)</label>
+                              <input
+                                type="number"
+                                step="0.05"
+                                value={inspectedLine.startTime}
+                                onChange={(e) => {
+                                  const val = Math.max(0, parseFloat(e.target.value) || 0);
+                                  updateLineByIndex(effectiveInspectedIndex, { startTime: val });
+                                }}
+                                className="w-full bg-[#040914] border border-slate-800 rounded-xl px-2.5 py-2 text-xs font-mono text-sky-300"
+                              />
+                            </div>
+                            <div>
+                              <label className="text-[10px] text-slate-400 block mb-1">End Time (sec)</label>
+                              <input
+                                type="number"
+                                step="0.05"
+                                value={inspectedLine.endTime}
+                                onChange={(e) => {
+                                  const val = Math.max(inspectedLine.startTime + 0.15, parseFloat(e.target.value) || 0);
+                                  updateLineByIndex(effectiveInspectedIndex, { endTime: val });
+                                }}
+                                className="w-full bg-[#040914] border border-slate-800 rounded-xl px-2.5 py-2 text-xs font-mono text-sky-300"
+                              />
+                            </div>
+                          </div>
+                          <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+                            <span>Total Active Duration:</span>
+                            <span className="font-mono text-white font-bold">
+                              {Math.max(0, inspectedLine.endTime - inspectedLine.startTime).toFixed(2)}s
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* SECTION 8: PER-LINE POSITION, SCALE & ROTATION */}
+                      {inspectorSection === 'position' && (
+                        <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-bold text-white">Line Position, Rotation &amp; Scale</span>
+                            <button
+                              onClick={() => updateInspectedLineStyle({ positionX: undefined, positionY: undefined, rotation: 0, scale: 1 })}
+                              className="text-[10px] text-sky-400 hover:underline"
+                            >
+                              Reset Transform
+                            </button>
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                              <span>Horizontal X</span>
+                              <span className="font-mono text-sky-300">{inspectedLine.style?.positionX ?? project.typography.positionX ?? 50}%</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="5"
+                              max="95"
+                              value={inspectedLine.style?.positionX ?? project.typography.positionX ?? 50}
+                              onChange={(e) => updateInspectedLineStyle({ positionX: parseInt(e.target.value, 10) })}
+                              className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                            />
+                          </div>
+
+                          <div>
+                            <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                              <span>Vertical Y</span>
+                              <span className="font-mono text-sky-300">{inspectedLine.style?.positionY ?? project.typography.positionY ?? 50}%</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="5"
+                              max="95"
+                              value={inspectedLine.style?.positionY ?? project.typography.positionY ?? 50}
+                              onChange={(e) => updateInspectedLineStyle({ positionY: parseInt(e.target.value, 10) })}
+                              className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Scale</span>
+                                <span className="font-mono text-slate-200">{inspectedLine.style?.scale ?? 1}x</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0.4"
+                                max="2.2"
+                                step="0.05"
+                                value={inspectedLine.style?.scale ?? 1}
+                                onChange={(e) => updateInspectedLineStyle({ scale: parseFloat(e.target.value) })}
+                                className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                            <div>
+                              <div className="flex justify-between text-[11px] text-slate-400 mb-0.5">
+                                <span>Rotation</span>
+                                <span className="font-mono text-slate-200">{inspectedLine.style?.rotation ?? 0}°</span>
+                              </div>
+                              <input
+                                type="range"
+                                min="-45"
+                                max="45"
+                                step="1"
+                                value={inspectedLine.style?.rotation ?? 0}
+                                onChange={(e) => updateInspectedLineStyle({ rotation: parseInt(e.target.value, 10) })}
+                                className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="p-6 text-center text-xs text-slate-400 bg-[#091326] rounded-2xl border border-slate-800">
+                      Paste lyrics in the Lyrics tab or click a lyric block on the timeline to inspect &amp; customize its independent style and animation.
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -3285,46 +5306,216 @@ export default function App() {
 
               {activeTab === 'typography' && (
                 <div className="space-y-4">
+                  {/* Font Family, Size & Weight Card */}
                   <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-white">Font Family</span>
-                      <label className="text-[11px] text-sky-400 hover:underline cursor-pointer">
+                      <span className="text-xs font-bold text-white">1. Font Family &amp; Weight</span>
+                      <label className="text-[11px] text-sky-400 hover:underline cursor-pointer font-semibold">
                         + Upload .TTF/.OTF/.WOFF
                         <input type="file" accept=".ttf,.otf,.woff,.woff2" onChange={(e) => handleCustomFontUpload(e.target.files[0])} className="hidden" />
                       </label>
                     </div>
                     <select
                       value={project.typography.fontFamily}
-                      onChange={(e) => updateProject(p => ({ typography: { ...p.typography, fontFamily: e.target.value } }))}
-                      className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2.5 text-xs text-white"
+                      onChange={(e) => updateGlobalTypography({ fontFamily: e.target.value })}
+                      className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-sky-500"
                     >
                       {availableFonts.map(f => (
                         <option key={f.name} value={f.family}>{f.name}</option>
                       ))}
                     </select>
 
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div>
+                        <label className="text-[11px] text-slate-400 block mb-1">Font Weight</label>
+                        <select
+                          value={project.typography.fontWeight || '700'}
+                          onChange={(e) => updateGlobalTypography({ fontWeight: e.target.value })}
+                          className="w-full bg-[#040914] border border-slate-800 rounded-xl p-2 text-xs text-white outline-none"
+                        >
+                          <option value="400">Regular (400)</option>
+                          <option value="500">Medium (500)</option>
+                          <option value="600">Semi-Bold (600)</option>
+                          <option value="700">Bold (700)</option>
+                          <option value="800">Extra-Bold (800)</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="text-[11px] text-slate-400 block mb-1">Text Alignment</label>
+                        <div className="grid grid-cols-3 gap-1 bg-[#040914] p-1 rounded-xl border border-slate-800">
+                          {[
+                            { id: 'left', label: 'Left' },
+                            { id: 'center', label: 'Center' },
+                            { id: 'right', label: 'Right' }
+                          ].map(al => (
+                            <button
+                              key={al.id}
+                              onClick={() => updateGlobalTypography({ align: al.id })}
+                              className={`py-1 rounded-lg text-[11px] font-bold transition ${
+                                (project.typography.align || 'center') === al.id
+                                  ? 'bg-blue-600 text-white shadow'
+                                  : 'text-slate-400 hover:text-white'
+                              }`}
+                            >
+                              {al.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
                     <div>
                       <div className="flex justify-between text-xs text-slate-400 mb-1">
-                        <span>Font Size</span>
-                        <span>{project.typography.fontSize}px</span>
+                        <span>Global Font Size (All Lines)</span>
+                        <span className="font-mono text-sky-400">{project.typography.fontSize}px</span>
                       </div>
                       <input
                         type="range"
-                        min="24"
-                        max="110"
+                        min="20"
+                        max="120"
                         value={project.typography.fontSize}
-                        onChange={(e) => updateProject(p => ({ typography: { ...p.typography, fontSize: parseInt(e.target.value, 10) } }))}
-                        className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg"
+                        onChange={(e) => updateGlobalTypography({ fontSize: parseInt(e.target.value, 10) })}
+                        className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Horizontal (X) & Vertical (Y) Position Card */}
+                  <div className="bg-[#091326] border border-sky-500/30 rounded-2xl p-4 space-y-3 shadow-lg">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-xs font-bold text-sky-300 block">2. Horizontal &amp; Vertical Position</span>
+                        <span className="text-[10px] text-slate-400">Use sliders or drag lyrics directly on the video preview</span>
+                      </div>
+                      <button
+                        onClick={() => updateGlobalTypography({ positionX: 50, positionY: 50 })}
+                        className="px-2 py-1 rounded-lg bg-[#040914] hover:bg-blue-950 text-[10px] font-semibold text-sky-400 border border-slate-800"
+                      >
+                        Reset 50/50
+                      </button>
+                    </div>
+
+                    {/* Quick Position Presets */}
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {[
+                        { label: '⬆ Top Third', x: 50, y: 22 },
+                        { label: '⏺ Dead Center', x: 50, y: 50 },
+                        { label: '⬇ Lower Third', x: 50, y: 78 },
+                        { label: '↖ Top Left', x: 25, y: 25, align: 'left' },
+                        { label: '↙ Bottom Left', x: 25, y: 78, align: 'left' },
+                        { label: '↘ Bottom Right', x: 75, y: 78, align: 'right' }
+                      ].map(preset => (
+                        <button
+                          key={preset.label}
+                          onClick={() => updateGlobalTypography({
+                            positionX: preset.x,
+                            positionY: preset.y,
+                            ...(preset.align ? { align: preset.align } : {})
+                          })}
+                          className="py-1.5 px-2 rounded-lg bg-[#040914] hover:bg-blue-950/60 border border-slate-800 hover:border-sky-500/40 text-[10px] font-semibold text-slate-300 transition truncate"
+                        >
+                          {preset.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-xs text-slate-300 mb-1">
+                        <span>Horizontal Position (X — Left ↔ Right)</span>
+                        <span className="font-mono text-sky-400">{project.typography.positionX ?? 50}%</span>
+                      </div>
+                      <input
+                        type="range"
+                        min="5"
+                        max="95"
+                        value={project.typography.positionX ?? 50}
+                        onChange={(e) => updateGlobalTypography({ positionX: parseInt(e.target.value, 10) })}
+                        className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3 pt-2">
+                    <div>
+                      <div className="flex justify-between text-xs text-slate-300 mb-1">
+                        <span>Vertical Position (Y — Top ↕ Bottom)</span>
+                        <span className="font-mono text-sky-400">{project.typography.positionY ?? 50}%</span>
+                      </div>
+                      <input
+                        type="range"
+                        min="5"
+                        max="95"
+                        value={project.typography.positionY ?? 50}
+                        onChange={(e) => updateGlobalTypography({ positionY: parseInt(e.target.value, 10) })}
+                        className="w-full accent-sky-400 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Spacing & Line Wrapping Card */}
+                  <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                    <span className="text-xs font-bold text-white block">3. Spacing &amp; Line Wrapping</span>
+
+                    <div>
+                      <div className="flex justify-between text-xs text-slate-400 mb-1">
+                        <span>Max Line Width (Auto-Wrap)</span>
+                        <span className="font-mono text-slate-200">{project.typography.maxWidth ?? 84}%</span>
+                      </div>
+                      <input
+                        type="range"
+                        min="35"
+                        max="96"
+                        value={project.typography.maxWidth ?? 84}
+                        onChange={(e) => updateGlobalTypography({ maxWidth: parseInt(e.target.value, 10) })}
+                        className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                          <span>Line Height</span>
+                          <span className="font-mono text-slate-200">{project.typography.lineHeight ?? 1.35}x</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.9"
+                          max="2.2"
+                          step="0.05"
+                          value={project.typography.lineHeight ?? 1.35}
+                          onChange={(e) => updateGlobalTypography({ lineHeight: parseFloat(e.target.value) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                        />
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                          <span>Letter Spacing</span>
+                          <span className="font-mono text-slate-200">{project.typography.letterSpacing ?? 1}px</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="-2"
+                          max="18"
+                          step="0.5"
+                          value={project.typography.letterSpacing ?? 1}
+                          onChange={(e) => updateGlobalTypography({ letterSpacing: parseFloat(e.target.value) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Colors, Shadow Glow, Stroke Outline & Box Card */}
+                  <div className="bg-[#091326] border border-slate-800 rounded-2xl p-4 space-y-3">
+                    <span className="text-xs font-bold text-white block">4. Colors, Glow, Stroke &amp; Backing Box</span>
+
+                    <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-[11px] text-slate-400 block mb-1">Base Text Color</label>
                         <input
                           type="color"
                           value={project.typography.textColor}
-                          onChange={(e) => updateProject(p => ({ typography: { ...p.typography, textColor: e.target.value } }))}
+                          onChange={(e) => updateGlobalTypography({ textColor: e.target.value })}
                           className="w-full h-9 rounded-lg bg-[#040914] border border-slate-800 cursor-pointer"
                         />
                       </div>
@@ -3333,10 +5524,65 @@ export default function App() {
                         <input
                           type="color"
                           value={project.typography.highlightColor}
-                          onChange={(e) => updateProject(p => ({ typography: { ...p.typography, highlightColor: e.target.value } }))}
+                          onChange={(e) => updateGlobalTypography({ highlightColor: e.target.value })}
                           className="w-full h-9 rounded-lg bg-[#040914] border border-slate-800 cursor-pointer"
                         />
                       </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 pt-1">
+                      <div>
+                        <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                          <span>Shadow Blur</span>
+                          <span className="font-mono text-slate-200">{project.typography.shadowBlur ?? 18}px</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="50"
+                          value={project.typography.shadowBlur ?? 18}
+                          onChange={(e) => updateGlobalTypography({ shadowBlur: parseInt(e.target.value, 10) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-[11px] text-slate-400 mb-1">
+                          <span>Outline Stroke</span>
+                          <span className="font-mono text-slate-200">{project.typography.strokeWidth ?? 0}px</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="14"
+                          value={project.typography.strokeWidth ?? 0}
+                          onChange={(e) => updateGlobalTypography({ strokeWidth: parseInt(e.target.value, 10) })}
+                          className="w-full accent-blue-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
+                        />
+                      </div>
+                    </div>
+
+                    {(project.typography.strokeWidth || 0) > 0 && (
+                      <div className="flex items-center justify-between pt-1">
+                        <span className="text-[11px] text-slate-400">Stroke Outline Color</span>
+                        <input
+                          type="color"
+                          value={project.typography.strokeColor || '#000000'}
+                          onChange={(e) => updateGlobalTypography({ strokeColor: e.target.value })}
+                          className="w-16 h-7 rounded bg-[#040914] border border-slate-800 cursor-pointer"
+                        />
+                      </div>
+                    )}
+
+                    <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
+                      <label className="flex items-center space-x-2 text-xs text-slate-200 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={project.typography.showBox || false}
+                          onChange={(e) => updateGlobalTypography({ showBox: e.target.checked })}
+                          className="accent-blue-500 rounded"
+                        />
+                        <span>Subtitle Background Pill Box</span>
+                      </label>
                     </div>
                   </div>
                 </div>
@@ -3492,9 +5738,22 @@ export default function App() {
                     maxHeight: '100%',
                     maxWidth: '100%'
                   }}
-                  className="relative rounded-2xl overflow-hidden border border-slate-800/90 shadow-[0_25px_70px_rgba(0,0,0,0.85)] bg-black flex items-center justify-center"
+                  onPointerDown={(e) => {
+                    setIsDraggingCanvasText(true);
+                    updateTextPosFromPointer(e.clientX, e.clientY);
+                  }}
+                  onPointerMove={(e) => {
+                    if (isDraggingCanvasText) updateTextPosFromPointer(e.clientX, e.clientY);
+                  }}
+                  onPointerUp={() => setIsDraggingCanvasText(false)}
+                  onPointerLeave={() => setIsDraggingCanvasText(false)}
+                  title="Click or drag anywhere on the canvas to position lyrics horizontally & vertically"
+                  className="relative rounded-2xl overflow-hidden border border-slate-800/90 shadow-[0_25px_70px_rgba(0,0,0,0.85)] bg-black flex items-center justify-center cursor-move touch-none group"
                 >
-                  <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} className="w-full h-full object-contain" />
+                  <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} className="w-full h-full object-contain pointer-events-none" />
+                  <div className="absolute bottom-2 right-2.5 px-2 py-0.5 rounded-md bg-black/65 border border-white/10 text-[10px] font-mono text-sky-300 opacity-80 group-hover:opacity-100 transition pointer-events-none">
+                    📍 Drag to Move • X:{project.typography.positionX ?? 50}% Y:{project.typography.positionY ?? 50}%
+                  </div>
                 </div>
               </div>
 
@@ -3573,19 +5832,47 @@ export default function App() {
                     const maxDur = project.audio?.duration || 24;
                     const leftPct = (l.startTime / maxDur) * 100;
                     const widthPct = Math.max(0.8, ((l.endTime - l.startTime) / maxDur) * 100);
+                    const isSelected = l.id === selectedLyricId || idx === activeSyncIndex;
+                    const inDurSec = Math.min(l.anim?.inDur ?? project.animation.duration ?? 0.45, (l.endTime - l.startTime) * 0.5);
+                    const outDurSec = Math.min(l.anim?.outDur ?? project.animation.duration ?? 0.45, (l.endTime - l.startTime) * 0.5);
+                    const lineDur = Math.max(0.15, l.endTime - l.startTime);
+                    const inPct = Math.min(48, (inDurSec / lineDur) * 100);
+                    const outPct = Math.min(48, (outDurSec / lineDur) * 100);
+
                     return (
                       <div
                         key={l.id}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedLyricId(l.id);
+                          setActiveSyncIndex(idx);
+                          setActiveTab('line_inspector');
+                        }}
                         style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
-                        className={`absolute top-0 h-9 rounded-lg px-2 flex items-center text-[10px] font-semibold truncate border ${
+                        title={`Line #${idx + 1}: "${l.text}" (${formatTime(l.startTime)} - ${formatTime(l.endTime)}) • Click to open Line FX Inspector`}
+                        className={`absolute top-0 h-9 rounded-lg px-2 flex items-center justify-between gap-1 text-[10px] font-semibold truncate border overflow-hidden transition ${
                           l.isInstrumental
                             ? 'bg-amber-500/25 border-amber-400/60 text-amber-200'
-                            : idx === activeSyncIndex
-                            ? 'bg-blue-600/50 border-sky-400 text-white'
-                            : 'bg-[#0C1930]/90 border-blue-500/30 text-slate-200'
+                            : isSelected
+                            ? 'bg-blue-600/60 border-sky-300 text-white shadow-lg shadow-blue-950/60'
+                            : 'bg-[#0C1930]/90 border-blue-500/30 text-slate-200 hover:border-sky-400/50'
                         }`}
                       >
-                        {l.text}
+                        {/* Visual Entrance / Exit Animation Ramp Indicators */}
+                        <div
+                          style={{ width: `${inPct}%` }}
+                          className="absolute left-0 top-0 bottom-0 bg-sky-400/15 border-r border-sky-300/25 pointer-events-none"
+                        />
+                        <div
+                          style={{ width: `${outPct}%` }}
+                          className="absolute right-0 top-0 bottom-0 bg-indigo-400/15 border-l border-indigo-300/25 pointer-events-none"
+                        />
+                        <span className="relative z-10 truncate">{l.text}</span>
+                        {l.presetId && (
+                          <span className="relative z-10 text-[8px] font-mono uppercase px-1 rounded bg-black/40 text-sky-300 shrink-0">
+                            {l.presetId}
+                          </span>
+                        )}
                       </div>
                     );
                   })}

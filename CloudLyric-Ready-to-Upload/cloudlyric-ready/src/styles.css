@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; font-synthesis: none; text-rendering: optimizeLegibility; }
+html, body, #root { width: 100%; min-height: 100%; margin: 0; }
+body { min-width: 320px; min-height: 100dvh; overflow: hidden; background: #03060c; }
+*, *::before, *::after { box-sizing: border-box; }
+button, input, select, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+input, select, textarea { max-width: 100%; }
+#root { min-height: 100dvh; }
+@media (max-width: 767px) {
+  body { overscroll-behavior: none; }
+  #root > div { min-height: 100dvh; }
+  button, label, input[type="range"] { touch-action: manipulation; }
+}
+@media (max-height: 600px) and (orientation: landscape) {
+  body { overflow: auto; }
+  #root > div { min-height: 100dvh; height: auto !important; }
+}
